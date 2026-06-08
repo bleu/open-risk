@@ -12,7 +12,7 @@ data_format: html
 source_repo: n/a
 access: free
 metric_orientation: financial-market
-recommendation: conditional
+recommendation: exclude
 last_researched: 2026-06-05
 confidence: medium
 ---
@@ -102,31 +102,22 @@ aggregator, not the feeds it shows verbatim).
 
 ## Inclusion assessment
 
-- **Verdict:** conditional
+- **Verdict:** exclude
 - **Reasoning:**
-  - *Ethereum-native (hard RFP requirement):* Zyfai **does cover Ethereum
-    mainnet** pools. The risk dashboard includes mainnet pool scoring for Aave,
-    Compound V3, Fluid, Morpho Vaults, Spark, and Yearn — 6 of the Top-20
-    protocols. This satisfies the chain requirement.
-  - *Is it actually a neutral risk feed?* It is a **yield agent's internal
-    opportunity-screening dashboard**, surfaced publicly. Its purpose is to route
-    Zyfai's own capital, not to serve as an independent third-party rating. That
-    is a neutrality/conflict concern: the grades are coupled to the protocols
-    Zyfai integrates and earns on.
-  - *Access:* The dashboard is free to view, but there is **no documented public
-    API or data export** for the risk grades; it is a JS SPA, so automation would
-    require reverse-engineering the client-side data calls — weak for the feed-
-    automation goal.
-  - *Redundancy:* Financial/market orientation already well covered by
-    BlockAnalitica, pigi.finance, Xerberus, Philidor; Zyfai adds no new method or
-    signal axis.
-  - *Coverage relevance:* Covers 6 Top-20 lending protocols on mainnet (Aave,
-    Compound V3, Fluid, Morpho Vaults, Spark, Yearn), which is meaningful
-    overlap with the RFP seed list.
+  - *No public API:* The dashboard is free to view, but there is **no documented
+    public API or data export** for the risk grades. It is a JS SPA, so
+    automation would require reverse-engineering client-side network calls — not
+    a viable feed-ingestion path.
+  - *Neutrality concern:* It is a **yield agent's internal opportunity-screening
+    dashboard**, surfaced publicly. Its purpose is to route Zyfai's own capital,
+    not to serve as an independent third-party rating. The grades are coupled to
+    the protocols Zyfai integrates and earns on (advisor Marc Zeller is Aave-
+    affiliated).
 
-  Inclusion is **conditional** on Zyfai exposing the risk grades via a documented
-  public API or providing a structured data export. Neutrality concerns remain a
-  secondary consideration.
+  Note: Zyfai does cover Ethereum mainnet pools for 6 Top-20 protocols (Aave,
+  Compound V3, Fluid, Morpho Vaults, Spark, Yearn), so chain coverage is not the
+  issue. Exclusion is driven by the lack of a consumable API and the conflict-of-
+  interest concern.
 
 ## How to fetch
 
