@@ -12,7 +12,7 @@ data_format: html
 source_repo: n/a
 access: free
 metric_orientation: mixed
-recommendation: include
+recommendation: exclude
 last_researched: 2026-06-08
 confidence: high
 ---
@@ -78,16 +78,8 @@ It **complements** rather than duplicates the registry: BlockAnalitica covers qu
 
 ## Inclusion assessment
 
-- **Verdict:** include
-- **Reasoning:**
-  - *Access:* Fully public and free — no login, paywall, or API key observed across the homepage, docs, and lens pages. This makes it automatable and consistent with a public-good aggregator.
-  - *Scope breadth:* Narrow by design — confirmed to only cover **Morpho + Morpho Vaults** (and Turtle) from the Top-20 seed protocols. Per the skill's coverage-relevance rule, a narrow feed that uniquely covers high-value Top-20 protocols still merits inclusion.
-  - *Is it actually a risk feed?* Yes — it is a purpose-built vault/curator risk dashboard with explicit grading, risk factors, liquidation/bad-debt tracking, and anomaly alerts. Matches its RFP §4 "Dashboard" type.
-  - *Neutrality & conflicts:* Operator/team identity is undisclosed on public surfaces — an open question, but no declared commercial ties to listed protocols were found.
-  - *Redundancy:* Low. It is the only registry feed centered on the curator-as-operator unit, complementing the broader lending-risk and decentralization feeds.
-  - *Coverage relevance:* High for Morpho/Morpho Vaults specifically — exactly where the curator model lives.
-
-  Coverage is confirmed as Morpho-only from the Top-20 list. Could be downgraded to `conditional` if (a) the aggregator wants broader-reach feeds, or (b) the lack of a stable machine-readable surface makes scraping too brittle to automate reliably.
+- **Verdict:** exclude
+- **Reasoning:** CuratorWatch only supports Morpho Vaults. Coverage is too narrow — it covers a single protocol from the Top-20 seed list, making the integration cost disproportionate to the breadth of signal it provides. While the curator-grading angle is unique and the data quality is solid, a feed that only serves one protocol does not justify the scraping infrastructure (no API exists) required to ingest it.
 
 ## How to fetch
 
