@@ -13,8 +13,8 @@ source_repo: n/a
 access: free
 metric_orientation: mixed
 recommendation: include
-last_researched: 2026-06-05
-confidence: medium
+last_researched: 2026-06-08
+confidence: high
 ---
 
 # CuratorWatch
@@ -23,14 +23,14 @@ CuratorWatch is a free public dashboard providing "on-chain curator & vault inte
 
 ## Coverage of Top 20
 
-CuratorWatch is a vault-curator monitor. Its native subject is **Morpho** and **Morpho Vaults** (curated MetaMorpho vaults), which is exactly the "curator" model it grades. Its changelog indicates cross-protocol expansion to other vault-bearing lending protocols (Aave, Euler, Compound, Spark) sourced through the Turtle API, though Morpho remains the primary, deepest coverage.
+CuratorWatch is a vault-curator monitor. Manual investigation confirmed it **only supports Morpho and Turtle** — meaning from the Top-20 seed list, only **Morpho** (and Morpho Vaults / curated MetaMorpho vaults) is covered. Despite changelog mentions of Aave, Euler, Compound, and Spark via the Turtle API, live inspection shows these are not present in practice.
 
-- **Likely covered:** Morpho, Morpho Vaults (primary/native). Possibly partial: Aave, Euler, Compound, Spark — the changelog lists these as integrated via the Turtle API, but depth/confirmation per-protocol could not be verified from public surfaces.
+- **Confirmed covered:** Morpho, Morpho Vaults (primary/native), Turtle.
+- **Not covered (confirmed):** Aave, Euler, Compound, Spark — despite changelog references to Turtle API integration, these protocols are not present on the live site.
 - **Not applicable:**
   - Uniswap, Curve, Balancer (DEX/AMM), CoW Swap, 1inch, 0x / Matcha (swap aggregators) — no curator-managed lending vaults to grade.
   - Lido, Rocket Pool (liquid staking) — issue LSTs, not curated vaults; CuratorWatch's curator/vault grading model does not apply.
-  - Fluid, Gearbox, Liquity, Spark (as a CDP/lending protocol rather than a vault host), Pendle, Yearn, Mellow — these are lending/yield protocols but are not built on the curator-managed vault model CuratorWatch grades, unless they appear via Turtle's cross-protocol feed. Yearn and Mellow are vault systems but were not confirmed in CuratorWatch's coverage.
-- **Notes:** Coverage was inferred from the homepage tagline, the /docs methodology (which references "Morpho" and "Turtle" protocol filters), and the changelog (which lists Morpho, Turtle, Aave, Euler, Compound, Spark via the Turtle API). No live protocol-list enumeration was performed (documentation-only). The strongest, most reliable coverage is Morpho / Morpho Vaults; treat broader lending coverage as unconfirmed/partial.
+  - Fluid, Gearbox, Liquity, Spark, Pendle, Yearn, Mellow — not built on the curator-managed vault model CuratorWatch grades.
 
 ## Data products & meaning
 
@@ -81,13 +81,13 @@ It **complements** rather than duplicates the registry: BlockAnalitica covers qu
 - **Verdict:** include
 - **Reasoning:**
   - *Access:* Fully public and free — no login, paywall, or API key observed across the homepage, docs, and lens pages. This makes it automatable and consistent with a public-good aggregator.
-  - *Scope breadth:* Narrow by design, but it uniquely and deeply covers **Morpho + Morpho Vaults**, two of the Top-20 seed protocols, plus a possible partial reach into Aave/Euler/Compound/Spark via Turtle. Per the skill's coverage-relevance rule, a narrow feed that uniquely covers high-value Top-20 protocols still merits inclusion.
+  - *Scope breadth:* Narrow by design — confirmed to only cover **Morpho + Morpho Vaults** (and Turtle) from the Top-20 seed protocols. Per the skill's coverage-relevance rule, a narrow feed that uniquely covers high-value Top-20 protocols still merits inclusion.
   - *Is it actually a risk feed?* Yes — it is a purpose-built vault/curator risk dashboard with explicit grading, risk factors, liquidation/bad-debt tracking, and anomaly alerts. Matches its RFP §4 "Dashboard" type.
   - *Neutrality & conflicts:* Operator/team identity is undisclosed on public surfaces — an open question, but no declared commercial ties to listed protocols were found.
   - *Redundancy:* Low. It is the only registry feed centered on the curator-as-operator unit, complementing the broader lending-risk and decentralization feeds.
   - *Coverage relevance:* High for Morpho/Morpho Vaults specifically — exactly where the curator model lives.
 
-  Could be downgraded to `conditional` only if (a) coverage proves to be Morpho-only with no usable signal for other Top-20 protocols and the aggregator wants broader-reach feeds, or (b) the lack of a stable machine-readable surface makes scraping too brittle to automate reliably.
+  Coverage is confirmed as Morpho-only from the Top-20 list. Could be downgraded to `conditional` if (a) the aggregator wants broader-reach feeds, or (b) the lack of a stable machine-readable surface makes scraping too brittle to automate reliably.
 
 ## How to fetch
 
@@ -106,8 +106,9 @@ It **complements** rather than duplicates the registry: BlockAnalitica covers qu
 
 ## Open questions / gaps
 
+> Protocol coverage has been resolved by manual investigation: confirmed Morpho and Turtle only. The remaining questions below could not be resolved by initial manual investigation and require deeper follow-up.
+
 - No documented public API, JSON export, or GitHub repo — fetch path is scraping; the `/_next/data` JSON route needs live verification before building automation.
-- Exact set of covered protocols beyond Morpho is unconfirmed. The changelog lists Aave, Euler, Compound, Spark via the Turtle API, but coverage depth per protocol (and whether non-Morpho vaults are graded the same way) was not verifiable from docs alone.
 - Operator/team identity, funding, and any commercial relationships with listed protocols or curators are undisclosed — relevant to the RFP's neutrality requirement; needs investigation.
 - AGPL/open-source status: none indicated; appears to be a proprietary closed-source site.
 - Whether the per-vault grades/scores are individually addressable/linkable (stable URLs use human-readable curator slugs per changelog) — confirm slug stability for deep-linking in the aggregator.
