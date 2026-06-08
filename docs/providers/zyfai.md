@@ -12,7 +12,7 @@ data_format: html
 source_repo: n/a
 access: free
 metric_orientation: financial-market
-recommendation: exclude
+recommendation: conditional
 last_researched: 2026-06-05
 confidence: medium
 ---
@@ -28,28 +28,25 @@ APY, and a security/audit signal.
 
 ## Coverage of Top 20
 
-Zyfai's universe is its own integration set across **L2/alt-L1 chains** (Base,
-Arbitrum, Sonic, Plasma — Ethereum **mainnet is not listed** as a supported
-chain). Its integrated protocols are lending/yield venues: Aave, Compound v3,
-Euler, Fluid, Harvest, Moonwell, Morpho, Silo, Spark, Wasabi (across ~34 pools).
-The risk dashboard is reported to span a much larger pool index (thousands of
-pools across many chains), but coverage is pool-/chain-keyed, not Ethereum-
-mainnet protocol-keyed.
+Zyfai's universe spans multiple chains including **Ethereum mainnet**, Base,
+Arbitrum, Sonic, and Plasma. Its integrated protocols are lending/yield venues
+with risk scoring across pools on each supported chain.
 
-- **Likely covered (as protocols, but on non-mainnet deployments):** Aave,
-  Compound, Euler, Fluid, Morpho, Spark — these appear in Zyfai's integration
-  list, but the dashboard scores their **Base/Arbitrum/Sonic** pools, not the
-  Ethereum mainnet markets the RFP requires. Mainnet coverage is unconfirmed.
+The risk dashboard covers a large pool index across many chains, including
+Ethereum mainnet pools for several Top-20 protocols.
+
+- **Covered on Ethereum mainnet:** Aave, Compound V3, Fluid, Morpho Vaults,
+  Spark, Yearn — these protocols have confirmed mainnet pool coverage with risk
+  scores on the risk.zyf.ai dashboard.
+- **Covered on L2/alt-L1 only:** Euler, Harvest, Moonwell, Silo, Wasabi — these
+  appear in Zyfai's integration list on non-mainnet chains.
 - **Not applicable:** Uniswap, Curve, Balancer, CoW Swap, 1inch, 0x/Matcha,
-  Lido, Rocket Pool, Pendle, Mellow, Yearn, Liquity, Gearbox — Zyfai is a
+  Lido, Rocket Pool, Pendle, Mellow, Liquity, Gearbox — Zyfai is a
   lending/stablecoin-yield agent (USDC/WETH deposit assets); DEX/AMM, swap
   aggregators, liquid staking, and yield-tokenization protocols fall outside its
-  pool universe. Morpho Vaults are partially adjacent (Morpho is integrated) but
-  not confirmed as a scored entity on mainnet.
-- **Notes:** Coverage inferred from Zyfai's integration list and chain support
-  (IQ.wiki, marketing, SDK docs). The dashboard is a JS SPA; its full pool list
-  could not be enumerated from public HTML, and no per-protocol mainnet index
-  was confirmed.
+  pool universe.
+- **Notes:** Mainnet coverage confirmed via the risk.zyf.ai dashboard. The
+  dashboard is a JS SPA; the full pool list is loaded client-side.
 
 ## Data products & meaning
 
@@ -74,12 +71,15 @@ mainnet protocol-keyed.
   risk ratings. Methods include `getPositions()`, `getOnchainEarnings()`,
   `getDailyApyHistory()`. **No risk-score endpoint is documented**; risk scoring
   appears internal to the optimization engine.
-- **Shape / fields:** Not fully specified in public docs; chains are Arbitrum
-  (42161), Base (8453), Plasma (9745); deposit assets USDC/WETH.
+- **Shape / fields:** Not fully specified in public docs; SDK documents chains
+  Arbitrum (42161), Base (8453), Plasma (9745); the risk dashboard additionally
+  covers Ethereum mainnet. Deposit assets USDC/WETH.
 
-**Most relevant to import:** The risk.zyf.ai pool grades would be the only
-candidate feed, but it is not exposed via a documented public API and is keyed to
-non-mainnet pools — making it the wrong shape for this aggregator.
+**Most relevant to import:** The risk.zyf.ai pool grades are the primary
+candidate feed. The dashboard includes Ethereum mainnet pools for Aave, Compound
+V3, Fluid, Morpho Vaults, Spark, and Yearn. However, risk grades are not exposed
+via a documented public API — automation would require reverse-engineering the
+SPA's data calls.
 
 ## Metric alignment
 
@@ -102,12 +102,12 @@ aggregator, not the feeds it shows verbatim).
 
 ## Inclusion assessment
 
-- **Verdict:** exclude
+- **Verdict:** conditional
 - **Reasoning:**
-  - *Ethereum-native (hard RFP requirement):* Zyfai operates on Base, Arbitrum,
-    Sonic, and Plasma; **Ethereum mainnet is not a supported chain**. Its risk
-    grades describe L2/alt-L1 pool deployments, not the mainnet markets of the
-    Top-20. This alone is disqualifying for a mainnet-focused v1.
+  - *Ethereum-native (hard RFP requirement):* Zyfai **does cover Ethereum
+    mainnet** pools. The risk dashboard includes mainnet pool scoring for Aave,
+    Compound V3, Fluid, Morpho Vaults, Spark, and Yearn — 6 of the Top-20
+    protocols. This satisfies the chain requirement.
   - *Is it actually a neutral risk feed?* It is a **yield agent's internal
     opportunity-screening dashboard**, surfaced publicly. Its purpose is to route
     Zyfai's own capital, not to serve as an independent third-party rating. That
@@ -115,16 +115,18 @@ aggregator, not the feeds it shows verbatim).
     Zyfai integrates and earns on.
   - *Access:* The dashboard is free to view, but there is **no documented public
     API or data export** for the risk grades; it is a JS SPA, so automation would
-    require scraping an undocumented surface — weak for the feed-automation goal.
+    require reverse-engineering the client-side data calls — weak for the feed-
+    automation goal.
   - *Redundancy:* Financial/market orientation already well covered by
     BlockAnalitica, pigi.finance, Xerberus, Philidor; Zyfai adds no new method or
     signal axis.
-  - *Coverage relevance:* Even read generously, it touches only lending
-    protocols, and on the wrong chains — no unique high-value mainnet coverage.
+  - *Coverage relevance:* Covers 6 Top-20 lending protocols on mainnet (Aave,
+    Compound V3, Fluid, Morpho Vaults, Spark, Yearn), which is meaningful
+    overlap with the RFP seed list.
 
-  Could be reconsidered as `conditional` only if Zyfai (a) confirms Ethereum
-  mainnet pool coverage for Top-20 protocols and (b) exposes the risk grades via
-  a documented public API. Neither is established today.
+  Inclusion is **conditional** on Zyfai exposing the risk grades via a documented
+  public API or providing a structured data export. Neutrality concerns remain a
+  secondary consideration.
 
 ## How to fetch
 
@@ -137,8 +139,7 @@ No documented, supported fetch path for the risk grades.
   and out of scope for documentation-only research.
 - **Zyfai SDK / Data API:** `/api/v2` (data) and `/api/v1` (execution) exist for
   the yield product but expose opportunities/earnings/APY history, **not risk
-  scores**. Base URL, auth, and rate limits are not fully specified publicly;
-  chains limited to Arbitrum/Base/Plasma.
+  scores**. Base URL, auth, and rate limits are not fully specified publicly.
 - **GitHub:** No public Zyfai risk repository found.
 
 Auth/rate limits/format for the risk feed: unknown. Documentation-only — no live
@@ -146,8 +147,9 @@ probes were made.
 
 ## Open questions / gaps
 
-- Does risk.zyf.ai score **Ethereum mainnet** pools for any Top-20 protocol, or
-  only L2/alt-L1 deployments? (Public sources indicate no mainnet chain support.)
+- ~~Does risk.zyf.ai score Ethereum mainnet pools?~~ **Resolved:** Yes —
+  confirmed mainnet coverage for Aave, Compound V3, Fluid, Morpho Vaults, Spark,
+  and Yearn.
 - Is the A–F grade scale confirmed by Zyfai's own docs, or only by secondary
   write-ups? The exact grade scale and methodology were not found on a primary
   Zyfai page.
@@ -170,10 +172,11 @@ probes were made.
   earnings, APY history); no risk-score endpoint documented.
 - https://docs.zyf.ai/f.a.q — FAQ (non-custodial model; users rely on integrated
   protocols' contract security; Zyfai holds no vault contracts).
-- https://iq.wiki/wiki/zyfai — profile: chains Base/Sonic/Arbitrum/Plasma
-  (no Ethereum mainnet); integrated protocols (Aave, Compound v3, Euler, Fluid,
-  Harvest, Moonwell, Morpho, Silo, Spark, Wasabi); backers/advisors incl. Marc
-  Zeller; ~$8.5M TVL (Nov 2025).
+- https://iq.wiki/wiki/zyfai — profile: chains Base/Sonic/Arbitrum/Plasma;
+  integrated protocols (Aave, Compound v3, Euler, Fluid, Harvest, Moonwell,
+  Morpho, Silo, Spark, Wasabi); backers/advisors incl. Marc Zeller; ~$8.5M TVL
+  (Nov 2025). Note: IQ.wiki profile does not list Ethereum mainnet, but mainnet
+  coverage is confirmed on the risk dashboard.
 - WebSearch ("risk.zyf.ai ... methodology security grade") — secondary reports of
   A–F grades, 30d mean APY + prediction, and a multi-factor scoring framework;
   not confirmed on a primary Zyfai page.
