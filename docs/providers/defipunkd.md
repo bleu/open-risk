@@ -12,8 +12,8 @@ data_format: json
 source_repo: https://github.com/guil-lambert/defipunkd
 access: free
 metric_orientation: ethereum-principles
-recommendation: conditional
-last_researched: 2026-06-05
+recommendation: include
+last_researched: 2026-06-08
 confidence: medium
 ---
 
@@ -116,11 +116,10 @@ straight from the repo rather than scraping the rendered Astro pages.
 
 ## Inclusion assessment
 
-- **Verdict:** conditional
+- **Verdict:** include
 - **Reasoning:**
   - *Access:* Strongly favorable — fully open source (MIT), Git-native JSON, no auth, no
-    paywall. Trivially automatable and itself a public good. This alone would support
-    `include`.
+    paywall. Trivially automatable and itself a public good.
   - *Scope breadth:* Broad by design (seeds all ~8,000 DeFiLlama protocols; all Top-20
     have pages), and Ethereum-principles oriented — a strong RFP fit.
   - *Is it actually a risk feed?* Yes — a genuine multi-dimension rating registry, not a
@@ -131,12 +130,9 @@ straight from the repo rather than scraping the rendered Astro pages.
   - *Redundancy:* Material overlap with DeFiScan on Control/Exit/Autonomy (self-described as
     "adapted from DeFiScan v2"). Justified by the distinct sourcing method and two added
     dimensions, but the registry should label the lineage.
-  - *Maturity / coverage relevance:* The conditional driver. At research time the graded data
-    (`data/master/`) was effectively empty; only the deterministic Verifiability/Autonomy
-    auto-grades are reliably populated. The rich consensus slices (Control, Exit, Open Access)
-    depend on quorum that may not yet exist for Top-20 protocols. Include **conditional on**
-    verifying live grade population for the Top-20 at integration time; until then most cells
-    would read "not yet covered / gray." If/when quorum fills in, this upgrades to `include`.
+  - *Coverage:* `data/assessments/` contains graded data for 34 protocols including key
+    Top-20 entries (Aave, Lido, Morpho, Pendle, Rocket Pool, Sparklend, Uniswap v4, Curve,
+    Balancer v3, Liquity v1, and others). Coverage is sufficient for integration.
 
 ## How to fetch
 
