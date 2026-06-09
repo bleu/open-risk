@@ -12,12 +12,26 @@ import { filterProtocols, getVisibleProviders } from "@/utils/filters";
 import { sortProtocols, type SortKey, type SortDir } from "@/utils/sort";
 import { computeFeedCounts } from "@/utils/feed-count";
 import { formatTvl, formatProtocolType } from "@/utils/format";
+import { TvlModal } from "@/ui/tvl-modal";
+import { FeedsModal } from "@/ui/feeds-modal";
+import { TierModal, getTiersForRatingType } from "@/ui/tier-modal";
+
+interface TierModalState {
+  providerId: string;
+  providerName: string;
+  metricId: string;
+  metricLabel: string;
+  ratingType: string;
+}
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] = useState<ProtocolType | "all">("all");
   const [sortKey, setSortKey] = useState<SortKey>("tvl");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const [tvlModalOpen, setTvlModalOpen] = useState(false);
+  const [feedsModalOpen, setFeedsModalOpen] = useState(false);
+  const [tierModal, setTierModal] = useState<TierModalState | null>(null);
 
   const filtered = useMemo(
     () => filterProtocols(PROTOCOLS, search, selectedType),
@@ -145,34 +159,53 @@ export default function Home() {
                     {formatProtocolType(protocol.type)}
                   </td>
                   <td
-                    className={`sticky left-[300px] z-10 w-[100px] min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 ${rowBg} group-hover:!bg-surface-700`}
+                    className={`sticky left-[300px] z-10 w-[100px] min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 cursor-pointer hover:text-blue-400 transition-colors ${rowBg} group-hover:!bg-surface-700`}
+                    onClick={() => setTvlModalOpen(true)}
                   >
                     {formatTvl(protocol.tvl)}
                   </td>
                   <td
-                    className={`sticky left-[400px] z-10 w-[60px] min-w-[60px] px-3 py-3 text-center font-mono text-sm text-gray-300 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}
+                    className={`sticky left-[400px] z-10 w-[60px] min-w-[60px] px-3 py-3 text-center font-mono text-sm text-gray-300 cursor-pointer hover:text-emerald-400 transition-colors shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}
+                    onClick={() => setFeedsModalOpen(true)}
                   >
                     {feedCounts.get(protocol.id) ?? 0}
                   </td>
 
                   {visibleProviders.flatMap((provider) =>
-                    provider.metrics.map((metric, i) => (
-                      <td
-                        key={`${provider.id}-${metric.id}`}
-                        className={`min-w-[80px] px-3 py-3 text-center ${
-                          i === 0 ? "border-l border-surface-700" : ""
-                        }`}
-                      >
-                        <RatingCell
-                          value={
-                            evaluations[provider.id]?.[protocol.id]?.[
-                              metric.id
-                            ] ?? null
+                    provider.metrics.map((metric, i) => {
+                      const isTierable =
+                        metric.ratingType === "stage" ||
+                        metric.ratingType === "grade";
+                      return (
+                        <td
+                          key={`${provider.id}-${metric.id}`}
+                          className={`min-w-[80px] px-3 py-3 text-center ${
+                            i === 0 ? "border-l border-surface-700" : ""
+                          } ${isTierable ? "cursor-pointer" : ""}`}
+                          onClick={
+                            isTierable
+                              ? () =>
+                                  setTierModal({
+                                    providerId: provider.id,
+                                    providerName: provider.name,
+                                    metricId: metric.id,
+                                    metricLabel: metric.label,
+                                    ratingType: metric.ratingType,
+                                  })
+                              : undefined
                           }
-                          ratingType={metric.ratingType}
-                        />
-                      </td>
-                    )),
+                        >
+                          <RatingCell
+                            value={
+                              evaluations[provider.id]?.[protocol.id]?.[
+                                metric.id
+                              ] ?? null
+                            }
+                            ratingType={metric.ratingType}
+                          />
+                        </td>
+                      );
+                    }),
                   )}
                 </tr>
                 );
@@ -180,6 +213,29 @@ export default function Home() {
             </tbody>
           </table>
         </div>
+      )}
+      {tvlModalOpen && (
+        <TvlModal protocols={sorted} onClose={() => setTvlModalOpen(false)} />
+      )}
+      {feedsModalOpen && (
+        <FeedsModal
+          protocols={sorted}
+          providers={visibleProviders}
+          evaluations={evaluations}
+          feedCounts={feedCounts}
+          onClose={() => setFeedsModalOpen(false)}
+        />
+      )}
+      {tierModal && (
+        <TierModal
+          title={tierModal.metricLabel ? `${tierModal.providerName} — ${tierModal.metricLabel}` : tierModal.providerName}
+          providerId={tierModal.providerId}
+          metricId={tierModal.metricId}
+          protocols={sorted}
+          evaluations={evaluations}
+          tiers={getTiersForRatingType(tierModal.ratingType)}
+          onClose={() => setTierModal(null)}
+        />
       )}
     </main>
   );
