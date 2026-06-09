@@ -13,7 +13,7 @@ source_repo: n/a
 access: gated
 metric_orientation: financial-market
 recommendation: conditional
-last_researched: 2026-06-05
+last_researched: 2026-06-08
 confidence: medium
 ---
 
@@ -123,12 +123,11 @@ which no other listed feed offers in the same form.
 
 - **Verdict:** conditional
 - **Reasoning:**
-  - *Access:* The data is **gated** — the GraphQL API requires a whitelisted API
-    key (`ClientSecret` header), granted via a Google Form approval. However, the
-    `ratings.credora.network` dashboard and published PDF reports provide a public
-    surface, and the Morpho integration is "at no cost." So there IS a publicly
-    viewable surface even though automated API access is approval-gated. This
-    keeps it out of full **exclude** and supports **conditional**.
+  - *Access:* The data is **gated** — ratings data is not available on any public
+    surface. The GraphQL API requires a whitelisted API key (`ClientSecret`
+    header), and the dashboard/reports require special access. There is no
+    publicly scrapable fallback. The condition for including this provider is
+    whether Credora enables data access for this project.
   - *Scope breadth:* Confirmed coverage is narrow today (Morpho + Spark), but
     these are high-value Top-20 protocols (Morpho, Morpho Vaults, Spark), and the
     roadmap is "all major lending protocols," which directly targets the Top-20
@@ -145,10 +144,9 @@ which no other listed feed offers in the same form.
   - *Coverage relevance:* Uniquely valuable for Morpho Vaults and Spark with an
     institutional credit lens.
 
-  Net: **conditional** — include if the team can obtain API whitelist access OR is
-  willing to scrape/manually curate from the public dashboard/PDF reports, and if
-  the gated/commissioned nature and RedStone ownership are clearly disclosed as
-  provenance.
+  Net: **conditional** — include only if Credora grants data access for this
+  project. The gated/commissioned nature and RedStone ownership must be clearly
+  disclosed as provenance.
 
 ## How to fetch
 
@@ -179,9 +177,8 @@ which no other listed feed offers in the same form.
 
   Supports pagination (`page`, `limit`) and filtering by protocol/product/chain/
   curator. Format: JSON.
-- **Fallback — dashboard scrape.** `https://ratings.credora.network/` renders the
-  same ratings; `https://reports.credora.io/<protocol>/latest.pdf` (e.g.
-  `/spark/latest.pdf`) publishes verbatim PDF assessment reports.
+- **Fallback — dashboard scrape.** Not viable. The dashboard and PDF reports
+  require special access; there is no publicly scrapable surface.
 - **Onchain.** RedStone positions Credora ratings to be "available natively
   onchain" via its oracle stack, but a specific ratings oracle contract address,
   feed ID, or push/pull mechanism was NOT documented on the public surfaces

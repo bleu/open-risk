@@ -13,7 +13,7 @@ source_repo: https://github.com/blockanalitica
 access: free
 metric_orientation: financial-market
 recommendation: include
-last_researched: 2026-06-05
+last_researched: 2026-06-08
 confidence: medium
 ---
 
@@ -144,30 +144,36 @@ stay within the RFP's no-composite-scoring constraint.
   extraction tool; `ba-utils` (TS) and `@blockanalitica/ui` (npm) are shared
   libraries. Self-hosting an API is possible (Docker compose present in
   maker-api); see each repo's CONTRIBUTING.md.
-- **Hosted API (preferred for automation):** The live dashboards
-  (spark./aave./morpho./maker.blockanalitica.com) are SPAs that fetch JSON from
-  a hosted backend. The base host is **inferred** as `api.blockanalitica.com`;
-  this was not confirmed from published API docs — verify by inspecting the
-  React frontend source or browser network calls (do not probe live per skill
-  rules).
-- **Auth / rate limits:** No login on the dashboards; no published auth scheme or
-  rate-limit documentation found. Treat as public-read JSON until verified.
+- **Hosted APIs:** Each dashboard has its own backend domain (discovered from the
+  React frontend JS bundles, not from published docs):
+  - **`morpho-api.blockanalitica.com`** — **confirmed working** (2026-06-08).
+    Django/DRF JSON API, paginated (`?p=N`). Endpoints: `/markets/`, `/vaults/`,
+    `/overall/`, `/liquidations/`, `/risk/capital-at-risk/`, `/chains/`,
+    `/tokens/`. No auth required. Returns 460 markets and 378 vaults with rates,
+    LTV, collateral, liquidity, and curator data.
+  - **`spark-api.blockanalitica.com`** — **all endpoints return 404**
+    (2026-06-08). Frontend JS references this host but no API routes respond.
+    May have been retired or moved.
+  - **`papi.blockanalitica.com`** (Aave) — **all endpoints return 404**
+    (2026-06-08). `aave.blockanalitica.com` dashboard also refuses connections.
+    May be deprecated despite the active GitHub repo.
+  - **`maker.blockanalitica.com`** — 302-redirects to `info.sky.money` (handed
+    to Sky ecosystem).
+- **Auth / rate limits:** No login or auth required on the Morpho API; no
+  published rate-limit documentation found. Treat as public-read JSON.
 - **Format:** JSON (REST). No OpenAPI/Swagger spec located.
-- **Note:** The Sky/Maker dashboard (maker.blockanalitica.com) now 302-redirects
-  to info.sky.money — that surface has been handed to the Sky ecosystem and may
-  use a different backend.
+- **Net:** Only the Morpho API is currently usable for automated fetching. Spark
+  and Aave data would require either finding the new API hosts or self-hosting
+  from the open-source repos.
 
 ## Open questions / gaps
 
-- Exact API base host (`api.blockanalitica.com` is inferred, not confirmed from
-  docs) and the per-dashboard endpoint paths/field schemas — read from the
-  open-source frontends or network calls to confirm.
-- Whether a single unified API serves all dashboards or each dashboard has its
-  own backend (maker-api and ajna-api suggest per-protocol backends).
+- Spark and Aave API hosts are confirmed down (2026-06-08). Needs investigation
+  into whether these APIs moved to new hosts or were retired. The open-source
+  repos (AAVE, ajna-api) could be self-hosted as a fallback.
 - Whether Morpho Vaults / MetaMorpho is covered as a distinct view in the Morpho
-  dashboard (could not confirm; live SPA returned an empty shell).
-- Status of the live Aave dashboard (aave.blockanalitica.com refused connection
-  during research) — may be deprecated or moved despite the active repo.
+  API — the `/vaults/` endpoint returns 378 vaults with curator data, suggesting
+  yes, but needs confirmation of MetaMorpho-specific fields.
 - Sphere data accessibility: is Sphere Risk Score data exposed via API, or only
   rendered/summarized via the "Agent Sphere" LLM front end?
 - Pricing for any private/consulting tier (public dashboards are free; commercial
