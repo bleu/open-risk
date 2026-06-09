@@ -12,7 +12,7 @@ data_format: html
 source_repo: https://github.com/llama-risk
 access: freemium
 metric_orientation: mixed
-recommendation: include
+recommendation: exclude
 last_researched: 2026-06-05
 confidence: medium
 ---
@@ -117,34 +117,25 @@ decentralization frameworks (DeFiScan/DeFiPunk'd).
 
 ## Inclusion assessment
 
-- **Verdict:** include
+- **Verdict:** exclude
 - **Reasoning:**
-  - *Access:* The research is publicly readable on the website (free), and there
-    is a GitHub org plus public governance-forum posts. The deepest monitoring is
-    in partner dashboards and LlamaGuard (gated/integration), but a substantial
-    free public surface exists — so this clears the bar for inclusion as a
-    public-good-visible feed (freemium).
+  - *No public API:* LlamaRisk does not expose a public API. Research content is
+    HTML-only with no documented JSON, CSV, or other machine-readable endpoint.
+    Dashboards and LlamaGuard similarly have no confirmed public data export.
+    Without a programmatic data surface, automated ingestion into the aggregator
+    is not feasible — scraping unstructured HTML prose does not meet the bar for
+    a reliable, maintainable data feed.
   - *Scope breadth:* Narrower than a universal registry; coverage concentrates on
-    Aave and Curve plus stablecoin/collateral assets. But these are two of the
-    highest-value Top-20 protocols (Aave, Curve), so even a focused feed adds
-    real coverage where capital concentration is greatest.
+    Aave and Curve plus stablecoin/collateral assets.
+  - *Neutrality & conflicts:* LlamaRisk is a **paid risk service provider** to
+    Curve and Aave (and works with Ethena). This is a commercial relationship
+    with listed Top-20 protocols.
   - *Is it actually a risk feed?* Yes — it is a recognized, named DeFi risk
-    research provider with explicit collateral and governance risk output, not a
-    portfolio tool or generic explorer.
-  - *Neutrality & conflicts:* IMPORTANT — LlamaRisk is a **paid risk service
-    provider** to Curve and Aave (and works with Ethena). This is a commercial
-    relationship with listed Top-20 protocols and must be declared per RFP
-    neutrality requirement. It does not disqualify inclusion but must be disclosed
-    in the registry's conflict notes.
-  - *Redundancy:* Low. Its expert prose on stablecoin peg/collateral risk and
-    parameter recommendations is a distinct methodology versus other registry
-    feeds; supports the oracle-diversity goal.
-  - *Coverage relevance:* High-value (Aave, Curve) coverage with a unique
-    research/advisory lens justifies inclusion despite narrow breadth.
+    research provider with explicit collateral and governance risk output.
+    However, the lack of a public API makes it impractical to include.
 
-  Verdict is `include` rather than `conditional` because a free, public research
-  surface exists and the coverage hits top-tier protocols; the commercial-conflict
-  disclosure is a labeling requirement, not an exclusion trigger.
+  Verdict is `exclude` because LlamaRisk does not provide a public API, making
+  programmatic data ingestion infeasible for the aggregator.
 
 ## How to fetch
 
