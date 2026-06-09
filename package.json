@@ -1,0 +1,32 @@
+{
+  "name": "open-risk",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "fetch": "tsx src/fetch-all.ts",
+    "fetch:philidor": "tsx src/providers/philidor.ts",
+    "fetch:defiscan": "tsx src/providers/defiscan.ts",
+    "fetch:defipunkd": "tsx src/providers/defipunkd.ts",
+    "fetch:blockanalitica": "tsx src/providers/blockanalitica.ts",
+    "fetch:curatorwatch": "tsx src/providers/curatorwatch.ts"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "20.17.6",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "postcss": "^8.5.0",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.22.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
