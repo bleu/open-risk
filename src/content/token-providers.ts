@@ -8,6 +8,16 @@ import type { Provider } from "@/types";
  */
 export const TOKEN_PROVIDERS: Provider[] = [
   {
+    id: "pharos",
+    name: "Pharos",
+    metrics: [
+      { id: "safety-grade", label: "Grade", ratingType: "letter" },
+      { id: "safety-score", label: "Safety", ratingType: "dns-score" },
+      { id: "dews-score", label: "DEWS", ratingType: "warning-score" },
+      { id: "liquidity", label: "Liquidity", ratingType: "dns-score" },
+    ],
+  },
+  {
     id: "goplus-token",
     name: "GoPlus",
     metrics: [
@@ -46,16 +56,6 @@ export const TOKEN_PROVIDERS: Provider[] = [
     metrics: [
       { id: "peg-deviation", label: "Peg", ratingType: "percentage" },
       { id: "max-depeg", label: "Max Depeg", ratingType: "percentage" },
-    ],
-  },
-  {
-    id: "pharos",
-    name: "Pharos",
-    metrics: [
-      { id: "safety-grade", label: "Grade", ratingType: "letter" },
-      { id: "safety-score", label: "Safety", ratingType: "dns-score" },
-      { id: "dews-score", label: "DEWS", ratingType: "warning-score" },
-      { id: "liquidity", label: "Liquidity", ratingType: "dns-score" },
     ],
   },
 ];
