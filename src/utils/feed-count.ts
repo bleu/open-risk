@@ -1,27 +1,31 @@
-import type { Protocol, Provider, EvaluationMap } from "@/types";
+import type { Provider, EvaluationMap } from "@/types";
+
+interface HasId {
+  id: string;
+}
 
 export function computeFeedCount(
-  protocol: Protocol,
+  entity: HasId,
   visibleProviders: Provider[],
   evaluations: EvaluationMap,
 ): number {
   return visibleProviders.filter((provider) => {
-    const protocolEvals = evaluations[provider.id]?.[protocol.id];
-    if (!protocolEvals) return false;
-    return provider.metrics.some((m) => protocolEvals[m.id] != null);
+    const entityEvals = evaluations[provider.id]?.[entity.id];
+    if (!entityEvals) return false;
+    return provider.metrics.some((m) => entityEvals[m.id] != null);
   }).length;
 }
 
 export function computeFeedCounts(
-  protocols: Protocol[],
+  entities: HasId[],
   visibleProviders: Provider[],
   evaluations: EvaluationMap,
 ): Map<string, number> {
   const counts = new Map<string, number>();
-  for (const protocol of protocols) {
+  for (const entity of entities) {
     counts.set(
-      protocol.id,
-      computeFeedCount(protocol, visibleProviders, evaluations),
+      entity.id,
+      computeFeedCount(entity, visibleProviders, evaluations),
     );
   }
   return counts;
