@@ -5,6 +5,14 @@ export type ProtocolType =
   | "yield-vault"
   | "liquid-staking";
 
+export type TokenType =
+  | "defi"
+  | "infrastructure"
+  | "meme"
+  | "exchange"
+  | "rwa"
+  | "stablecoin";
+
 export interface Protocol {
   /** Canonical identifier */
   id: string;
@@ -40,6 +48,19 @@ export interface Provider {
   id: string;
   name: string;
   metrics: ProviderMetric[];
+}
+
+export interface Token {
+  id: string;
+  name: string;
+  symbol: string;
+  type: TokenType;
+  /** Market cap in USD — used for sorting and display */
+  mcap: number;
+  /** Contract address (chain-prefixed if not Ethereum mainnet, e.g. "arbitrum:0x...") */
+  address: string | null;
+  /** Maps provider id → the slug that provider uses for this token (null = not covered) */
+  providerSlugs: Record<string, string | null>;
 }
 
 export interface Oracle {
