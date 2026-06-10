@@ -32,6 +32,7 @@ export type RatingType =
   | "letter"
   | "risk-level"
   | "dns-score"
+  | "warning-score"
   | "percentage"
   | "boolean"
   | "currency"
