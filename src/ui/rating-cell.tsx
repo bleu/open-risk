@@ -1,6 +1,7 @@
 import type { EvaluationValue, RatingType } from "@/types";
 import { StageBadge } from "./stage-badge";
 import { GradeBadge } from "./grade-badge";
+import { formatTvl } from "@/utils/format";
 
 interface RatingCellProps {
   value: EvaluationValue;
@@ -54,6 +55,56 @@ export function RatingCell({ value, ratingType }: RatingCellProps) {
           {value}
         </span>
       );
+    }
+    case "percentage": {
+      const n = Number(value);
+      const sign = n > 0 ? "+" : "";
+      const color =
+        n > 0 ? "text-green-400" : n < 0 ? "text-red-400" : "text-gray-400";
+      return (
+        <span className={`font-mono text-sm ${color}`}>
+          {sign}{n.toFixed(1)}%
+        </span>
+      );
+    }
+    case "boolean": {
+      const isTrue =
+        value === 1 || value === "1" || value === "true";
+      return (
+        <span
+          className={`text-sm font-medium ${isTrue ? "text-green-400" : "text-red-400"}`}
+        >
+          {isTrue ? "Yes" : "No"}
+        </span>
+      );
+    }
+    case "currency": {
+      const n = Number(value);
+      const color = n === 0 ? "text-green-400" : "text-gray-200";
+      return (
+        <span className={`font-mono text-sm ${color}`}>
+          {formatTvl(n)}
+        </span>
+      );
+    }
+    case "count": {
+      const n = Number(value);
+      const color =
+        n === 0
+          ? "text-green-400"
+          : n <= 2
+            ? "text-yellow-400"
+            : "text-red-400";
+      return <span className={`font-mono text-sm ${color}`}>{n}</span>;
+    }
+    case "multisig": {
+      const str = String(value);
+      const parts = str.split("/").map(Number);
+      let color = "text-gray-200";
+      if (parts.length === 2 && parts[1] > 0) {
+        color = parts[0] / parts[1] >= 0.5 ? "text-green-400" : "text-yellow-400";
+      }
+      return <span className={`font-mono text-sm ${color}`}>{str}</span>;
     }
     default:
       return <span className="text-sm text-gray-400">{String(value)}</span>;

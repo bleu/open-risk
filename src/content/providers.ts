@@ -2,10 +2,20 @@ import type { Provider } from "@/types";
 
 export const PROVIDERS: Provider[] = [
   {
+    id: "defillama",
+    name: "DeFiLlama",
+    metrics: [
+      { id: "tvl-delta", label: "Δ TVL 7d", ratingType: "percentage" },
+      { id: "audited", label: "Audited", ratingType: "boolean" },
+      { id: "hacks", label: "Hacks", ratingType: "count" },
+      { id: "hack-loss", label: "Hack $", ratingType: "currency" },
+    ],
+  },
+  {
     id: "nslookup",
     name: "NSLookup",
     metrics: [
-      { id: "score", label: "Score", ratingType: "dns-score" },
+      { id: "score", label: "DNS Score", ratingType: "dns-score" },
       { id: "dnssec", label: "DNSSEC", ratingType: "dns-score" },
       { id: "caa", label: "CAA", ratingType: "dns-score" },
       { id: "ttl", label: "TTL", ratingType: "dns-score" },
@@ -27,18 +37,16 @@ export const PROVIDERS: Provider[] = [
     ],
   },
   {
-    id: "riskscale",
-    name: "RiskScale",
-    metrics: [{ id: "score", label: "Score", ratingType: "numeric" }],
+    id: "goplus",
+    name: "GoPlus",
+    metrics: [
+      { id: "verified", label: "Src Verified", ratingType: "boolean" },
+      { id: "safe-token", label: "Token Safe", ratingType: "boolean" },
+    ],
   },
   {
-    id: "sentinel",
-    name: "Sentinel",
-    metrics: [{ id: "grade", label: "Grade", ratingType: "letter" }],
-  },
-  {
-    id: "threatlab",
-    name: "ThreatLab",
-    metrics: [{ id: "risk", label: "Risk", ratingType: "risk-level" }],
+    id: "safe-multisig",
+    name: "Safe Multisig",
+    metrics: [{ id: "threshold", label: "Signers", ratingType: "multisig" }],
   },
 ];

@@ -7,6 +7,9 @@ import defipunkd from "./providers/defipunkd.js";
 import blockanalitica from "./providers/blockanalitica.js";
 import curatorwatch from "./providers/curatorwatch.js";
 import nslookup from "./providers/nslookup.js";
+import defillama from "./providers/defillama.js";
+import goplus from "./providers/goplus.js";
+import safeMultisig from "./providers/safe-multisig.js";
 
 const ALL_PROVIDERS: ProviderFetcher[] = [
   philidor,
@@ -15,6 +18,9 @@ const ALL_PROVIDERS: ProviderFetcher[] = [
   blockanalitica,
   curatorwatch,
   nslookup,
+  defillama,
+  goplus,
+  safeMultisig,
 ];
 
 function parseArgs(): { provider?: string; parallel: boolean } {

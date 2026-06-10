@@ -12,7 +12,10 @@
     "fetch:defipunkd": "tsx src/providers/defipunkd.ts",
     "fetch:blockanalitica": "tsx src/providers/blockanalitica.ts",
     "fetch:curatorwatch": "tsx src/providers/curatorwatch.ts",
-    "fetch:nslookup": "tsx src/providers/nslookup.ts"
+    "fetch:nslookup": "tsx src/providers/nslookup.ts",
+    "fetch:defillama": "tsx src/providers/defillama.ts",
+    "fetch:goplus": "tsx src/providers/goplus.ts",
+    "fetch:safe-multisig": "tsx src/providers/safe-multisig.ts"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
