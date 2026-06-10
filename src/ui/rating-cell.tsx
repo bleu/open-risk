@@ -30,6 +30,17 @@ export function RatingCell({ value, ratingType }: RatingCellProps) {
           {value}
         </span>
       );
+    case "dns-score": {
+      const n = Number(value);
+      const color =
+        n >= 80 ? "text-green-400" : n >= 50 ? "text-yellow-400" : "text-red-400";
+      return (
+        <span className={`font-mono text-sm ${color}`}>
+          {value}
+          <span className="text-gray-500">/100</span>
+        </span>
+      );
+    }
     case "risk-level": {
       const riskColors: Record<string, string> = {
         Low: "text-green-400",
