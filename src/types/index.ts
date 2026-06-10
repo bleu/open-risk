@@ -22,7 +22,8 @@ export type RatingType =
   | "grade"
   | "numeric"
   | "letter"
-  | "risk-level";
+  | "risk-level"
+  | "dns-score";
 
 export interface ProviderMetric {
   id: string;
