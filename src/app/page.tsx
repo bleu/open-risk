@@ -15,6 +15,7 @@ import { formatTvl, formatProtocolType } from "@/utils/format";
 import { TvlModal } from "@/ui/tvl-modal";
 import { FeedsModal } from "@/ui/feeds-modal";
 import { TierModal, getTiersForRatingType } from "@/ui/tier-modal";
+import { ScoreModal } from "@/ui/score-modal";
 
 interface TierModalState {
   providerId: string;
@@ -22,6 +23,13 @@ interface TierModalState {
   metricId: string;
   metricLabel: string;
   ratingType: string;
+}
+
+interface ScoreModalState {
+  providerId: string;
+  providerName: string;
+  metricId: string;
+  metricLabel: string;
 }
 
 export default function Home() {
@@ -32,6 +40,7 @@ export default function Home() {
   const [tvlModalOpen, setTvlModalOpen] = useState(false);
   const [feedsModalOpen, setFeedsModalOpen] = useState(false);
   const [tierModal, setTierModal] = useState<TierModalState | null>(null);
+  const [scoreModal, setScoreModal] = useState<ScoreModalState | null>(null);
 
   const filtered = useMemo(
     () => filterProtocols(PROTOCOLS, search, selectedType),
@@ -176,12 +185,15 @@ export default function Home() {
                       const isTierable =
                         metric.ratingType === "stage" ||
                         metric.ratingType === "grade";
+                      const isScoreable =
+                        metric.ratingType === "dns-score";
+                      const isClickable = isTierable || isScoreable;
                       return (
                         <td
                           key={`${provider.id}-${metric.id}`}
                           className={`min-w-[80px] px-3 py-3 text-center ${
                             i === 0 ? "border-l border-surface-700" : ""
-                          } ${isTierable ? "cursor-pointer" : ""}`}
+                          } ${isClickable ? "cursor-pointer" : ""}`}
                           onClick={
                             isTierable
                               ? () =>
@@ -192,7 +204,15 @@ export default function Home() {
                                     metricLabel: metric.label,
                                     ratingType: metric.ratingType,
                                   })
-                              : undefined
+                              : isScoreable
+                                ? () =>
+                                    setScoreModal({
+                                      providerId: provider.id,
+                                      providerName: provider.name,
+                                      metricId: metric.id,
+                                      metricLabel: metric.label,
+                                    })
+                                : undefined
                           }
                         >
                           <RatingCell
@@ -235,6 +255,16 @@ export default function Home() {
           evaluations={evaluations}
           tiers={getTiersForRatingType(tierModal.ratingType)}
           onClose={() => setTierModal(null)}
+        />
+      )}
+      {scoreModal && (
+        <ScoreModal
+          title={`${scoreModal.providerName} — ${scoreModal.metricLabel}`}
+          providerId={scoreModal.providerId}
+          metricId={scoreModal.metricId}
+          protocols={sorted}
+          evaluations={evaluations}
+          onClose={() => setScoreModal(null)}
         />
       )}
     </main>

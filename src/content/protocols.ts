@@ -8,6 +8,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 14_500_000_000,
     providerSlugs: {
+      nslookup: "spark",
       defiscan: "spark",
       defipunkd: "sparklend",
       riskscale: "spark",
@@ -21,6 +22,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 18_400_000_000,
     providerSlugs: {
+      nslookup: "aave",
       defiscan: "aave",
       defipunkd: "aave",
       riskscale: "aave",
@@ -34,6 +36,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 4_300_000_000,
     providerSlugs: {
+      nslookup: "morpho",
       defiscan: "morpho",
       defipunkd: "morpho-blue",
       riskscale: "morpho",
@@ -47,6 +50,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 1_800_000_000,
     providerSlugs: {
+      nslookup: "fluid",
       defiscan: null,
       defipunkd: null,
       riskscale: "fluid",
@@ -60,6 +64,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 320_000_000,
     providerSlugs: {
+      nslookup: "gearbox",
       defiscan: null,
       defipunkd: null,
       riskscale: "gearbox",
@@ -73,6 +78,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 640_000_000,
     providerSlugs: {
+      nslookup: "euler",
       defiscan: null,
       defipunkd: null,
       riskscale: "euler",
@@ -86,6 +92,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 2_100_000_000,
     providerSlugs: {
+      nslookup: "compound",
       defiscan: "compound-v3",
       defipunkd: null,
       riskscale: "compound",
@@ -99,6 +106,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "lending",
     tvl: 580_000_000,
     providerSlugs: {
+      nslookup: "liquity",
       defiscan: "liquity",
       defipunkd: "liquity-v1",
       riskscale: "liquity",
@@ -113,6 +121,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "dex-amm",
     tvl: 5_200_000_000,
     providerSlugs: {
+      nslookup: "uniswap",
       defiscan: "uniswap-v3",
       defipunkd: "uniswap-v4",
       riskscale: "uniswap",
@@ -126,6 +135,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "dex-amm",
     tvl: 1_900_000_000,
     providerSlugs: {
+      nslookup: "curve",
       defiscan: "curve-finance",
       defipunkd: "curve-dex",
       riskscale: "curve",
@@ -139,6 +149,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "dex-amm",
     tvl: 860_000_000,
     providerSlugs: {
+      nslookup: "balancer",
       defiscan: null,
       defipunkd: "balancer-v3",
       riskscale: "balancer",
@@ -153,6 +164,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "swap-aggregator",
     tvl: 410_000_000,
     providerSlugs: {
+      nslookup: "cow-swap",
       defiscan: null,
       defipunkd: null,
       riskscale: null,
@@ -166,6 +178,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "swap-aggregator",
     tvl: 280_000_000,
     providerSlugs: {
+      nslookup: "1inch",
       defiscan: null,
       defipunkd: null,
       riskscale: "1inch",
@@ -179,6 +192,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "swap-aggregator",
     tvl: 190_000_000,
     providerSlugs: {
+      nslookup: "0x-matcha",
       defiscan: null,
       defipunkd: null,
       riskscale: null,
@@ -193,6 +207,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "yield-vault",
     tvl: 450_000_000,
     providerSlugs: {
+      nslookup: "yearn",
       defiscan: null,
       defipunkd: null,
       riskscale: "yearn",
@@ -206,6 +221,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "yield-vault",
     tvl: 340_000_000,
     providerSlugs: {
+      nslookup: "mellow",
       defiscan: null,
       defipunkd: null,
       riskscale: null,
@@ -219,6 +235,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "yield-vault",
     tvl: 1_200_000_000,
     providerSlugs: {
+      nslookup: "morpho-vaults",
       defiscan: null,
       defipunkd: null,
       riskscale: "morpho-vaults",
@@ -232,6 +249,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "yield-vault",
     tvl: 2_600_000_000,
     providerSlugs: {
+      nslookup: "pendle",
       defiscan: "pendle",
       defipunkd: "pendle",
       riskscale: "pendle",
@@ -246,6 +264,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "liquid-staking",
     tvl: 25_000_000_000,
     providerSlugs: {
+      nslookup: "lido",
       defiscan: "lido-v2",
       defipunkd: "lido",
       riskscale: "lido",
@@ -259,6 +278,7 @@ export const PROTOCOLS: Protocol[] = [
     type: "liquid-staking",
     tvl: 3_100_000_000,
     providerSlugs: {
+      nslookup: "rocket-pool",
       defiscan: null,
       defipunkd: "rocket-pool",
       riskscale: "rocket-pool",
