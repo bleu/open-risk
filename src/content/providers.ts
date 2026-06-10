@@ -2,6 +2,16 @@ import type { Provider } from "@/types";
 
 export const PROVIDERS: Provider[] = [
   {
+    id: "nslookup",
+    name: "NSLookup",
+    metrics: [
+      { id: "score", label: "Score", ratingType: "dns-score" },
+      { id: "dnssec", label: "DNSSEC", ratingType: "dns-score" },
+      { id: "caa", label: "CAA", ratingType: "dns-score" },
+      { id: "ttl", label: "TTL", ratingType: "dns-score" },
+    ],
+  },
+  {
     id: "defiscan",
     name: "DeFiScan",
     metrics: [{ id: "stage", label: "Stage", ratingType: "stage" }],

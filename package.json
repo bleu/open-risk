@@ -11,7 +11,8 @@
     "fetch:defiscan": "tsx src/providers/defiscan.ts",
     "fetch:defipunkd": "tsx src/providers/defipunkd.ts",
     "fetch:blockanalitica": "tsx src/providers/blockanalitica.ts",
-    "fetch:curatorwatch": "tsx src/providers/curatorwatch.ts"
+    "fetch:curatorwatch": "tsx src/providers/curatorwatch.ts",
+    "fetch:nslookup": "tsx src/providers/nslookup.ts"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
