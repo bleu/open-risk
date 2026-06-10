@@ -1,11 +1,11 @@
 import type { Token } from "@/types";
 
-const P = ["goplus-token", "defi-scanner", "chainaware", "honeypotis", "peg-monitor"] as const;
+const P = ["goplus-token", "defi-scanner", "chainaware", "honeypotis", "peg-monitor", "pharos"] as const;
 
 function token(
   id: string, name: string, symbol: string,
   type: Token["type"], mcap: number, address: string,
-  isPegMonitored = false,
+  isStablecoin = false,
 ): Token {
   return {
     id, name, symbol, type, mcap, address,
@@ -14,7 +14,8 @@ function token(
       [P[1]]: id,
       [P[2]]: address,
       [P[3]]: address,
-      [P[4]]: isPegMonitored ? id : null,
+      [P[4]]: isStablecoin ? id : null,
+      [P[5]]: isStablecoin ? id : null,
     },
   };
 }

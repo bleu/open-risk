@@ -42,6 +42,16 @@ export function RatingCell({ value, ratingType }: RatingCellProps) {
         </span>
       );
     }
+    case "warning-score": {
+      const n = Number(value);
+      const color =
+        n <= 15 ? "text-green-400" : n <= 25 ? "text-yellow-400" : "text-red-400";
+      return (
+        <span className={`font-mono text-sm ${color}`}>
+          {value}
+        </span>
+      );
+    }
     case "risk-level": {
       const riskColors: Record<string, string> = {
         Low: "text-green-400",
