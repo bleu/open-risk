@@ -42,6 +42,16 @@ export interface Provider {
   metrics: ProviderMetric[];
 }
 
+export interface Oracle {
+  id: string;
+  name: string;
+  /** Total Value Secured in USD */
+  tvs: number;
+  /** Number of DeFi protocols using this oracle */
+  protocols: number;
+  providerSlugs: Record<string, string | null>;
+}
+
 export type EvaluationValue = string | number | null;
 
 /**
