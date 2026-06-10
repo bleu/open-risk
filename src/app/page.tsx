@@ -7,6 +7,7 @@ import { PROVIDERS } from "@/content/providers";
 import { evaluations } from "@/content/evaluations";
 import { SearchBar } from "@/ui/search-bar";
 import { TypeTabs } from "@/ui/type-tabs";
+import { EntityTabs, type EntityType } from "@/ui/entity-tabs";
 import { RatingCell } from "@/ui/rating-cell";
 import { filterProtocols, getVisibleProviders } from "@/utils/filters";
 import { sortProtocols, type SortKey, type SortDir } from "@/utils/sort";
@@ -33,6 +34,7 @@ interface ScoreModalState {
 }
 
 export default function Home() {
+  const [entity, setEntity] = useState<EntityType>("protocols");
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] = useState<ProtocolType | "all">("all");
   const [sortKey, setSortKey] = useState<SortKey>("tvl");
@@ -77,7 +79,16 @@ export default function Home() {
   }
 
   return (
+    <>
+    <EntityTabs selected={entity} onChange={setEntity} />
     <main className="mx-auto max-w-[1600px] px-6 py-6">
+      {entity !== "protocols" ? (
+        <div className="py-20 text-center text-gray-500">
+          <p className="text-lg font-medium text-gray-400 capitalize">{entity}</p>
+          <p className="mt-2 text-sm">Coming soon.</p>
+        </div>
+      ) : (
+      <>
       <div className="mb-6 flex flex-wrap items-center gap-4">
         <SearchBar value={search} onChange={setSearch} />
         <TypeTabs selected={selectedType} onChange={setSelectedType} />
@@ -267,6 +278,9 @@ export default function Home() {
           onClose={() => setScoreModal(null)}
         />
       )}
+      </>
+      )}
     </main>
+    </>
   );
 }
