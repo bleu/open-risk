@@ -160,7 +160,7 @@ export function OracleMatrix() {
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
-                      {provider.metrics.length > 1 ? metric.label : ""}
+                      {metric.label}
                     </th>
                   )),
                 )}
