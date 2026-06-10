@@ -21,6 +21,7 @@ import { TvlModal } from "@/ui/tvl-modal";
 import { FeedsModal } from "@/ui/feeds-modal";
 import { TierModal, getTiersForRatingType } from "@/ui/tier-modal";
 import { ScoreModal } from "@/ui/score-modal";
+import { OracleMatrix } from "@/ui/oracle-matrix";
 
 interface TierModalState {
   providerId: string;
@@ -292,6 +293,8 @@ export default function Home() {
         </div>
       )}
       </>
+      ) : entity === "oracles" ? (
+        <OracleMatrix />
       ) : entity !== "protocols" ? (
         <div className="py-20 text-center text-gray-500">
           <p className="text-lg font-medium text-gray-400 capitalize">{entity}</p>
