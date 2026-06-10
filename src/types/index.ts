@@ -23,7 +23,12 @@ export type RatingType =
   | "numeric"
   | "letter"
   | "risk-level"
-  | "dns-score";
+  | "dns-score"
+  | "percentage"
+  | "boolean"
+  | "currency"
+  | "count"
+  | "multisig";
 
 export interface ProviderMetric {
   id: string;
