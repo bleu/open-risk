@@ -1,9 +1,8 @@
-export type EntityType = "protocols" | "tokens" | "curators" | "oracles";
+export type EntityType = "protocols" | "tokens" | "oracles";
 
 const TABS: { value: EntityType; label: string }[] = [
   { value: "protocols", label: "Protocols" },
   { value: "tokens", label: "Tokens" },
-  { value: "curators", label: "Curators" },
   { value: "oracles", label: "Oracles" },
 ];
 
