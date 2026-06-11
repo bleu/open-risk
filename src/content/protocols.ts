@@ -14,6 +14,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "sparklend",
       goplus: null,
       "safe-multisig": "spark",
+      risklayer: "spark",
     },
   },
   {
@@ -28,6 +29,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "aave",
       goplus: "aave",
       "safe-multisig": "aave",
+      risklayer: "aave",
     },
   },
   {
@@ -42,6 +44,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "morpho-blue",
       goplus: "morpho",
       "safe-multisig": "morpho",
+      risklayer: "morpho",
     },
   },
   {
@@ -56,6 +59,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "fluid",
       "safe-multisig": "fluid",
+      risklayer: null,
     },
   },
   {
@@ -70,6 +74,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "gearbox",
       "safe-multisig": "gearbox",
+      risklayer: null,
     },
   },
   {
@@ -84,6 +89,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "euler",
       "safe-multisig": "euler",
+      risklayer: null,
     },
   },
   {
@@ -98,6 +104,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "compound",
       "safe-multisig": "compound",
+      risklayer: "compound",
     },
   },
   {
@@ -112,6 +119,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "liquity-v1",
       goplus: "liquity",
       "safe-multisig": "liquity",
+      risklayer: null,
     },
   },
   // --- DEX/AMM ---
@@ -127,6 +135,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "uniswap-v4",
       goplus: "uniswap",
       "safe-multisig": "uniswap",
+      risklayer: "uniswap",
     },
   },
   {
@@ -141,6 +150,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "curve-dex",
       goplus: "curve",
       "safe-multisig": "curve",
+      risklayer: "curve",
     },
   },
   {
@@ -155,6 +165,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "balancer-v3",
       goplus: "balancer",
       "safe-multisig": "balancer",
+      risklayer: null,
     },
   },
   // --- Swap Aggregators ---
@@ -170,6 +181,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "cow-swap",
       "safe-multisig": "cow-swap",
+      risklayer: null,
     },
   },
   {
@@ -184,6 +196,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "1inch",
       "safe-multisig": "1inch",
+      risklayer: null,
     },
   },
   {
@@ -198,6 +211,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "0x-matcha",
       "safe-multisig": "0x-matcha",
+      risklayer: null,
     },
   },
   // --- Yield/Vault ---
@@ -213,6 +227,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: "yearn",
       "safe-multisig": "yearn",
+      risklayer: null,
     },
   },
   {
@@ -227,6 +242,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: null,
       "safe-multisig": "mellow",
+      risklayer: null,
     },
   },
   {
@@ -241,6 +257,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: null,
       goplus: null,
       "safe-multisig": "morpho-vaults",
+      risklayer: null,
     },
   },
   {
@@ -255,6 +272,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "pendle",
       goplus: "pendle",
       "safe-multisig": "pendle",
+      risklayer: "pendle",
     },
   },
   // --- Liquid Staking ---
@@ -270,6 +288,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "lido",
       goplus: "lido",
       "safe-multisig": "lido",
+      risklayer: "lido",
     },
   },
   {
@@ -284,6 +303,7 @@ export const PROTOCOLS: Protocol[] = [
       defipunkd: "rocket-pool",
       goplus: "rocket-pool",
       "safe-multisig": "rocket-pool",
+      risklayer: "rocket-pool",
     },
   },
 ];
