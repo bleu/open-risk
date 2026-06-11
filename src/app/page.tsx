@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import type { ProtocolType, TokenType } from "@/types";
+import { useEffect, useMemo, useState } from "react";
+import type { Protocol, Token, ProtocolType, TokenType } from "@/types";
 import { PROTOCOLS } from "@/content/protocols";
+import { fetchTvl, fetchTokenMcap } from "@/fetchers/defillama";
 import { PROVIDERS } from "@/content/providers";
 import { evaluations } from "@/content/evaluations";
 import { TOKENS } from "@/content/tokens";
@@ -51,6 +52,35 @@ export default function Home() {
   const [tierModal, setTierModal] = useState<TierModalState | null>(null);
   const [scoreModal, setScoreModal] = useState<ScoreModalState | null>(null);
 
+  // Live data state
+  const [liveTvl, setLiveTvl] = useState<Map<string, number> | null>(null);
+  const [liveMcap, setLiveMcap] = useState<Map<string, number> | null>(null);
+
+  useEffect(() => {
+    fetchTvl()
+      .then(setLiveTvl)
+      .catch((err) => console.error("Failed to fetch TVL:", err));
+    fetchTokenMcap()
+      .then(setLiveMcap)
+      .catch((err) => console.error("Failed to fetch token mcap:", err));
+  }, []);
+
+  const protocols: Protocol[] = useMemo(() => {
+    if (!liveTvl) return PROTOCOLS;
+    return PROTOCOLS.map((p) => {
+      const tvl = liveTvl.get(p.id);
+      return tvl != null ? { ...p, tvl } : p;
+    });
+  }, [liveTvl]);
+
+  const tokens: Token[] = useMemo(() => {
+    if (!liveMcap) return TOKENS;
+    return TOKENS.map((t) => {
+      const mcap = liveMcap.get(t.id);
+      return mcap != null ? { ...t, mcap } : t;
+    });
+  }, [liveMcap]);
+
   // Token state
   const [tokenSearch, setTokenSearch] = useState("");
   const [selectedTokenType, setSelectedTokenType] = useState<TokenType | "all">("all");
@@ -58,8 +88,8 @@ export default function Home() {
   const [tokenSortDir, setTokenSortDir] = useState<SortDir>("desc");
 
   const filtered = useMemo(
-    () => filterProtocols(PROTOCOLS, search, selectedType),
-    [search, selectedType],
+    () => filterProtocols(protocols, search, selectedType),
+    [protocols, search, selectedType],
   );
 
   const visibleProviders = useMemo(
@@ -79,8 +109,8 @@ export default function Home() {
 
   // Token computed values
   const filteredTokens = useMemo(
-    () => filterTokens(TOKENS, tokenSearch, selectedTokenType),
-    [tokenSearch, selectedTokenType],
+    () => filterTokens(tokens, tokenSearch, selectedTokenType),
+    [tokens, tokenSearch, selectedTokenType],
   );
 
   const visibleTokenProviders = useMemo(
