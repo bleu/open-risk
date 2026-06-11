@@ -5,6 +5,7 @@ import { defipunkdEvaluations } from "./defipunkd";
 import { defillamaEvaluations } from "./defillama";
 import { goplusEvaluations } from "./goplus";
 import { safeMultisigEvaluations } from "./safe-multisig";
+import { risklayerEvaluations } from "./risklayer";
 
 export const evaluations: EvaluationMap = {
   defillama: defillamaEvaluations,
@@ -13,4 +14,5 @@ export const evaluations: EvaluationMap = {
   defipunkd: defipunkdEvaluations,
   goplus: goplusEvaluations,
   "safe-multisig": safeMultisigEvaluations,
+  risklayer: risklayerEvaluations,
 };
