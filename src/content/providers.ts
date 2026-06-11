@@ -49,4 +49,9 @@ export const PROVIDERS: Provider[] = [
     name: "Safe Multisig",
     metrics: [{ id: "threshold", label: "Signers", ratingType: "multisig" }],
   },
+  {
+    id: "risklayer",
+    name: "RiskLayer",
+    metrics: [{ id: "score", label: "Risk Score", ratingType: "numeric" }],
+  },
 ];
