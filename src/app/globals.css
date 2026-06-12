@@ -25,6 +25,14 @@ body {
   color: #e5e7eb;
 }
 
+/* Tailwind v4 preflight resets cursor on buttons; restore pointer for all interactive elements */
+button,
+[role="button"],
+select,
+summary {
+  cursor: pointer;
+}
+
 /* Dark scrollbar for all scrollable areas */
 * {
   scrollbar-width: thin;
