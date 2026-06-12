@@ -86,7 +86,7 @@ export default async function ProtocolProfile({ params }: Props) {
                       return (
                         <div key={metric.id}>
                           <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-gray-400">
                               {metric.label}
                             </span>
                             <span className="font-mono text-sm text-gray-300">
@@ -94,7 +94,7 @@ export default async function ProtocolProfile({ params }: Props) {
                             </span>
                           </div>
                           {metric.description && (
-                            <p className="mt-0.5 text-[11px] leading-tight text-gray-600">
+                            <p className="mt-0.5 text-[11px] leading-tight text-gray-500">
                               {metric.description}
                             </p>
                           )}
@@ -104,7 +104,7 @@ export default async function ProtocolProfile({ params }: Props) {
                     return (
                       <div key={metric.id}>
                         <div className="flex items-center justify-between">
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-400">
                             {metric.label}
                           </span>
                           <RatingCell
@@ -113,7 +113,7 @@ export default async function ProtocolProfile({ params }: Props) {
                           />
                         </div>
                         {metric.description && (
-                          <p className="mt-0.5 text-[11px] leading-tight text-gray-600">
+                          <p className="mt-0.5 text-[11px] leading-tight text-gray-500">
                             {metric.description}
                           </p>
                         )}

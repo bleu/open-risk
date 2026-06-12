@@ -14,7 +14,7 @@ access: free
 metric_orientation: financial-market
 is_rfp_suggestion: true
 recommendation: exclude
-last_researched: 2026-06-08
+last_researched: 2026-06-12
 confidence: medium
 ---
 
@@ -48,6 +48,10 @@ Scrape only. No documented API. Web app at `https://app.defi-sphere.com/`.
 - https://app.defi-sphere.com/ — web app
 - https://blockanalitica.substack.com/p/introducing-sphere-risk-scores — risk score methodology
 
+## Usage in Open Risk
+
+DeFi Sphere is not included as a data provider in the matrix (no public API, per-pool scores only). However, its public dashboards are linked from Protocol Profile pages as supplementary external views for lending protocols: Aave, Spark, Morpho, Liquity, and Compound.
+
 ## Inclusion
 
-No. No public API. Duplicate of Block Analitica (same operator, overlapping metrics). Per-pool scores only, not per-protocol.
+No (as a matrix provider). No public API. Per-pool scores only, not per-protocol. Used as an external link resource on Protocol Profile pages.

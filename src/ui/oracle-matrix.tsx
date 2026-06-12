@@ -157,14 +157,12 @@ export function OracleMatrix() {
                   provider.metrics.map((metric, i) => (
                     <th
                       key={`${provider.id}-${metric.id}`}
-                      className={`min-w-[80px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
+                      className={`relative min-w-[80px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
-                      <span className="inline-flex items-center justify-center gap-1">
-                        {metric.label}
-                        {metric.description && <MetricTooltip description={metric.description} />}
-                      </span>
+                      {metric.label}
+                      {metric.description && <MetricTooltip description={metric.description} />}
                     </th>
                   )),
                 )}
