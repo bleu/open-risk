@@ -54,4 +54,4 @@ Historical max-depeg values are curated from known incident data and DeFiLlama p
 
 ## Inclusion
 
-Yes (already integrated). Provides a direct peg health signal for stablecoins. Complements Pharos stablecoin safety scores with raw peg deviation data.
+Yes. Provides a direct peg health signal for stablecoins. Complements Pharos stablecoin safety scores with raw peg deviation data.

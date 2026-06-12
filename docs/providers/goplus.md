@@ -66,4 +66,4 @@ Also used as a **token-level provider** in the token matrix (slug: `goplus-token
 
 ## Inclusion
 
-Yes (already integrated). Not an RFP-suggested risk provider — adds basic token contract safety checks (source verification, honeypot detection) as a supplementary data layer.
+Yes. Adds basic token contract safety checks (source verification, honeypot detection) as a supplementary data layer.

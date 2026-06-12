@@ -49,4 +49,4 @@ REST API at `https://swagger.chainaware.ai`. Auth: API key from user profile. Qu
 
 ## Inclusion
 
-Yes (already integrated). Provides a unique rug-pull safety signal based on deployer behavioral analysis — a dimension not covered by other token security providers.
+Yes. Provides a unique rug-pull safety signal based on deployer behavioral analysis — a dimension not covered by other token security providers.

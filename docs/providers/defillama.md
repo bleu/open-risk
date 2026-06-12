@@ -67,4 +67,4 @@ Also used as an **oracle-level provider** in the oracle matrix. Provides TVS (To
 
 ## Inclusion
 
-Yes (already integrated). Not an RFP-suggested risk provider — serves as the baseline metadata layer for protocol fundamentals (TVL, audits, hacks) and oracle TVS tracking.
+Yes. Serves as the baseline metadata layer for protocol fundamentals (TVL, audits, hacks) and oracle TVS tracking.

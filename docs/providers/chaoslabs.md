@@ -53,4 +53,4 @@ Current snapshot values: Chainlink (95/88), Chronicle (91/85), WINkLink (72/65),
 
 ## Inclusion
 
-Yes (already integrated). Provides oracle-level accuracy and freshness scoring — a unique dimension for the oracle risk matrix. Only provider offering quantitative oracle performance metrics.
+Yes. Provides oracle-level accuracy and freshness scoring — a unique dimension for the oracle risk matrix. Only provider offering quantitative oracle performance metrics.

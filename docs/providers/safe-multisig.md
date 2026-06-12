@@ -58,4 +58,4 @@ The fetcher (`src/providers/safe-multisig.ts`) maintains a map of protocol ID to
 
 ## Inclusion
 
-Yes (already integrated). Not an RFP-suggested risk provider — adds a direct governance decentralization signal (signer threshold) that complements DeFiScan's qualitative admin-control assessments.
+Yes. Adds a direct governance decentralization signal (signer threshold) that complements DeFiScan's qualitative admin-control assessments.

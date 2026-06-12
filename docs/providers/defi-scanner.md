@@ -52,4 +52,4 @@ The `scannerProject` query (25 credits/call) returns issues, security score, and
 
 ## Inclusion
 
-Yes (already integrated). Provides token-level contract risk assessment via free API. Also valuable for its REKT Database (2,500+ exploit incidents with per-protocol filtering).
+Yes. Provides token-level contract risk assessment via free API. Also valuable for its REKT Database (2,500+ exploit incidents with per-protocol filtering).

@@ -55,4 +55,4 @@ Supports optional `X-API-KEY` header but not strictly required for basic use. No
 
 ## Inclusion
 
-Yes (already integrated). Provides a practical honeypot detection signal via transaction simulation — complements GoPlus and De.Fi Scanner static analysis with dynamic behavior testing.
+Yes. Provides a practical honeypot detection signal via transaction simulation — complements GoPlus and De.Fi Scanner static analysis with dynamic behavior testing.

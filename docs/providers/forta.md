@@ -54,4 +54,4 @@ Query alerts filtered by oracle-related bot IDs and target addresses. Aggregate 
 
 ## Inclusion
 
-Yes (already integrated). Provides real-time threat monitoring signals for oracle networks — a unique operational security dimension. The only provider offering live alert data for oracle manipulation detection.
+Yes. Provides real-time threat monitoring signals for oracle networks — a unique operational security dimension. The only provider offering live alert data for oracle manipulation detection.

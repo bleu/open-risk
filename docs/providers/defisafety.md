@@ -49,4 +49,4 @@ Website at `https://www.defisafety.com`. No API. Coverage of 340+ reviews across
 
 ## Inclusion
 
-Yes (already integrated). Provides oracle quality scores based on process review methodology — a unique qualitative assessment dimension. Complements Chaos Labs' quantitative accuracy/freshness with a process/documentation quality lens.
+Yes. Provides oracle quality scores based on process review methodology — a unique qualitative assessment dimension. Complements Chaos Labs' quantitative accuracy/freshness with a process/documentation quality lens.

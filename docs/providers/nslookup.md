@@ -61,4 +61,4 @@ The fetcher (`src/providers/nslookup.ts`) queries each protocol's primary domain
 
 ## Inclusion
 
-Yes (already integrated). Not an RFP-suggested risk provider — adds a unique DNS security signal that complements protocol-level risk assessments. Directly relevant given historical DNS hijack incidents in DeFi.
+Yes. Adds a unique DNS security signal that complements protocol-level risk assessments. Directly relevant given historical DNS hijack incidents in DeFi.
