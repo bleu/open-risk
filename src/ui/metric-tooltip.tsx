@@ -4,7 +4,7 @@ interface MetricTooltipProps {
 
 export function MetricTooltip({ description }: MetricTooltipProps) {
   return (
-    <span className="group/tip absolute right-0.5 top-0.5">
+    <span className="group/tip absolute right-0.5 top-0.5 opacity-0 transition-opacity group-hover:opacity-100">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

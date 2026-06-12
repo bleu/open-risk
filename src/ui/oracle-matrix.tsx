@@ -157,7 +157,7 @@ export function OracleMatrix() {
                   provider.metrics.map((metric, i) => (
                     <th
                       key={`${provider.id}-${metric.id}`}
-                      className={`relative min-w-[80px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
+                      className={`group relative min-w-[80px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
