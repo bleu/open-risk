@@ -45,8 +45,12 @@ _Avoid_: category, sector, vertical
 ### Views
 
 **Matrix**:
-The primary data table. Rows are seed protocols, left columns are protocol metadata (name, type, TVL, feed count), right columns are provider evaluations.
+The primary data table. Rows are seed protocols, left columns are protocol metadata (name, type, TVL, feed count), right columns are provider evaluations. Protocol names link to their Protocol Profile.
 _Avoid_: grid, table, dashboard
+
+**Protocol Profile**:
+A dedicated page for a single protocol (`/protocol/{id}`). Displays all matrix evaluations grouped into cards per provider, plus supplementary iframe embeds for external tools. A strict superset of the protocol's matrix row — everything in the row, plus content too rich for a cell.
+_Avoid_: protocol page, detail view, protocol dashboard
 
 **Type Filter**:
 A tab bar that restricts the matrix to protocols of a single type. Providers with all-null evaluations for the filtered type are hidden.

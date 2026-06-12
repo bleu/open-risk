@@ -45,6 +45,8 @@ export interface ProviderMetric {
   id: string;
   label: string;
   ratingType: RatingType;
+  /** One-sentence factual description of what this metric measures. */
+  description?: string;
 }
 
 export interface Provider {

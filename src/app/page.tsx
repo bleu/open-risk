@@ -24,6 +24,7 @@ import { FeedsModal } from "@/ui/feeds-modal";
 import { TierModal, getTiersForRatingType } from "@/ui/tier-modal";
 import { ScoreModal } from "@/ui/score-modal";
 import { OracleMatrix } from "@/ui/oracle-matrix";
+import { MetricTooltip } from "@/ui/metric-tooltip";
 
 interface TierModalState {
   providerId: string;
@@ -224,7 +225,10 @@ export default function Home() {
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
-                      {metric.label}
+                      <span className="inline-flex items-center justify-center gap-1">
+                        {metric.label}
+                        {metric.description && <MetricTooltip description={metric.description} />}
+                      </span>
                     </th>
                   )),
                 )}
@@ -396,7 +400,10 @@ export default function Home() {
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
-                      {metric.label}
+                      <span className="inline-flex items-center justify-center gap-1">
+                        {metric.label}
+                        {metric.description && <MetricTooltip description={metric.description} />}
+                      </span>
                     </th>
                   )),
                 )}
@@ -416,7 +423,12 @@ export default function Home() {
                   <td
                     className={`sticky left-0 z-10 w-[180px] min-w-[180px] px-4 py-3 font-medium text-gray-100 ${rowBg} group-hover:!bg-surface-700`}
                   >
-                    {protocol.name}
+                    <Link
+                      href={`/protocol/${protocol.id}`}
+                      className="transition-colors hover:text-emerald-400"
+                    >
+                      {protocol.name}
+                    </Link>
                   </td>
                   <td
                     className={`sticky left-[180px] z-10 w-[120px] min-w-[120px] px-3 py-3 text-xs text-gray-400 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}

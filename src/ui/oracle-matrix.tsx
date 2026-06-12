@@ -8,6 +8,7 @@ import { RatingCell } from "@/ui/rating-cell";
 import { SearchBar } from "@/ui/search-bar";
 import { formatTvl } from "@/utils/format";
 import { ScoreModal } from "@/ui/score-modal";
+import { MetricTooltip } from "@/ui/metric-tooltip";
 
 type SortKey = "tvs" | "name" | "protocols" | "feeds";
 type SortDir = "asc" | "desc";
@@ -160,7 +161,10 @@ export function OracleMatrix() {
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
-                      {metric.label}
+                      <span className="inline-flex items-center justify-center gap-1">
+                        {metric.label}
+                        {metric.description && <MetricTooltip description={metric.description} />}
+                      </span>
                     </th>
                   )),
                 )}
