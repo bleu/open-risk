@@ -275,7 +275,7 @@ export default function Home() {
                         return (
                           <td
                             key={`${provider.id}-${metric.id}`}
-                            className={`min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 ${
+                            className={`min-w-[100px] px-3 py-3 text-center font-mono text-sm text-gray-300 ${
                               i === 0 ? "border-l border-surface-700" : ""
                             }`}
                           >
@@ -448,7 +448,7 @@ export default function Home() {
                         return (
                           <td
                             key={`${provider.id}-${metric.id}`}
-                            className={`min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 cursor-pointer hover:text-blue-400 transition-colors ${
+                            className={`min-w-[100px] px-3 py-3 text-center font-mono text-sm text-gray-300 cursor-pointer hover:text-blue-400 transition-colors ${
                               i === 0 ? "border-l border-surface-700" : ""
                             }`}
                             onClick={() => setTvlModalOpen(true)}
