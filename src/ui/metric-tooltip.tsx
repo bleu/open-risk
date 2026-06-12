@@ -4,12 +4,12 @@ interface MetricTooltipProps {
 
 export function MetricTooltip({ description }: MetricTooltipProps) {
   return (
-    <span className="group/tip relative inline-flex">
+    <span className="group/tip absolute right-0.5 top-0.5 opacity-0 transition-opacity group-hover:opacity-100">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="h-3.5 w-3.5 shrink-0 text-gray-500 transition-colors group-hover/tip:text-gray-400"
+        className="h-3 w-3 shrink-0 text-gray-600 transition-colors group-hover/tip:text-gray-400"
       >
         <path
           fillRule="evenodd"
@@ -17,7 +17,7 @@ export function MetricTooltip({ description }: MetricTooltipProps) {
           clipRule="evenodd"
         />
       </svg>
-      <span className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-1.5 w-max max-w-[240px] -translate-x-1/2 rounded-md border border-surface-500 bg-surface-700 px-2.5 py-1.5 text-xs font-normal text-gray-300 opacity-0 shadow-lg transition-opacity group-hover/tip:opacity-100">
+      <span className="pointer-events-none absolute bottom-full right-0 z-30 mb-1.5 w-max max-w-[240px] rounded-md border border-surface-500 bg-surface-700 px-2.5 py-1.5 text-xs font-normal text-gray-300 opacity-0 shadow-lg transition-opacity group-hover/tip:opacity-100">
         {description}
       </span>
     </span>
