@@ -116,6 +116,10 @@ export function RatingCell({ value, ratingType }: RatingCellProps) {
       }
       return <span className={`font-mono text-sm ${color}`}>{str}</span>;
     }
+    case "live-tvl":
+    case "live-mcap":
+      // Rendered inline in page.tsx with live entity data; fallback here.
+      return <span className="font-mono text-sm text-gray-400">{String(value)}</span>;
     default:
       return <span className="text-sm text-gray-400">{String(value)}</span>;
   }
