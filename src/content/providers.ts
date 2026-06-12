@@ -5,8 +5,8 @@ export const PROVIDERS: Provider[] = [
     id: "defillama",
     name: "DeFiLlama",
     metrics: [
+      { id: "tvl", label: "TVL", ratingType: "live-tvl" },
       { id: "tvl-delta", label: "Δ TVL 7d", ratingType: "percentage" },
-      { id: "audited", label: "Audited", ratingType: "boolean" },
       { id: "hacks", label: "Hacks", ratingType: "count" },
       { id: "hack-loss", label: "Hack $", ratingType: "currency" },
     ],
@@ -18,7 +18,6 @@ export const PROVIDERS: Provider[] = [
       { id: "score", label: "DNS Score", ratingType: "dns-score" },
       { id: "dnssec", label: "DNSSEC", ratingType: "dns-score" },
       { id: "caa", label: "CAA", ratingType: "dns-score" },
-      { id: "ttl", label: "TTL", ratingType: "dns-score" },
     ],
   },
   {

@@ -37,7 +37,9 @@ export type RatingType =
   | "boolean"
   | "currency"
   | "count"
-  | "multisig";
+  | "multisig"
+  | "live-tvl"
+  | "live-mcap";
 
 export interface ProviderMetric {
   id: string;

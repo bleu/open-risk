@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import type { Protocol, Token, ProtocolType, TokenType } from "@/types";
 import { PROTOCOLS } from "@/content/protocols";
 import { fetchTvl, fetchTokenMcap } from "@/fetchers/defillama";
@@ -51,6 +52,9 @@ export default function Home() {
   const [feedsModalOpen, setFeedsModalOpen] = useState(false);
   const [tierModal, setTierModal] = useState<TierModalState | null>(null);
   const [scoreModal, setScoreModal] = useState<ScoreModalState | null>(null);
+
+  // Banner state
+  const [bannerDismissed, setBannerDismissed] = useState(false);
 
   // Live data state
   const [liveTvl, setLiveTvl] = useState<Map<string, number> | null>(null);
@@ -178,7 +182,7 @@ export default function Home() {
               {/* Provider group row */}
               <tr className="border-b border-surface-600 bg-surface-800">
                 <th
-                  colSpan={5}
+                  colSpan={4}
                   className="sticky left-0 z-20 bg-surface-800"
                 />
                 {visibleTokenProviders.map((provider) => (
@@ -203,17 +207,11 @@ export default function Home() {
                 <th className="sticky left-[160px] z-20 w-[80px] min-w-[80px] bg-surface-800 px-3 py-2 text-left text-xs font-medium text-gray-400">
                   Symbol
                 </th>
-                <th className="sticky left-[240px] z-20 w-[100px] min-w-[100px] bg-surface-800 px-3 py-2 text-left text-xs font-medium text-gray-400">
+                <th className="sticky left-[240px] z-20 w-[100px] min-w-[100px] bg-surface-800 px-3 py-2 text-left text-xs font-medium text-gray-400 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)]">
                   Category
                 </th>
                 <th
-                  className="sticky left-[340px] z-20 w-[110px] min-w-[110px] bg-surface-800 px-3 py-2 text-right text-xs font-medium text-gray-400 cursor-pointer select-none"
-                  onClick={() => handleTokenSort("mcap")}
-                >
-                  Mkt Cap{tokenSortIndicator("mcap")}
-                </th>
-                <th
-                  className="sticky left-[450px] z-20 w-[60px] min-w-[60px] bg-surface-800 px-3 py-2 text-center text-xs font-medium text-gray-400 cursor-pointer select-none shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)]"
+                  className="min-w-[60px] px-3 py-2 text-center text-xs font-medium text-gray-400 cursor-pointer select-none"
                   onClick={() => handleTokenSort("feeds")}
                 >
                   Feeds{tokenSortIndicator("feeds")}
@@ -222,7 +220,7 @@ export default function Home() {
                   provider.metrics.map((metric, i) => (
                     <th
                       key={`${provider.id}-${metric.id}`}
-                      className={`min-w-[80px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
+                      className={`min-w-[100px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
@@ -253,23 +251,37 @@ export default function Home() {
                     {token.symbol}
                   </td>
                   <td
-                    className={`sticky left-[240px] z-10 w-[100px] min-w-[100px] px-3 py-3 text-xs text-gray-400 ${rowBg} group-hover:!bg-surface-700`}
+                    className={`sticky left-[240px] z-10 w-[100px] min-w-[100px] px-3 py-3 text-xs text-gray-400 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}
                   >
                     {formatTokenType(token.type)}
                   </td>
                   <td
-                    className={`sticky left-[340px] z-10 w-[110px] min-w-[110px] px-3 py-3 text-right font-mono text-sm text-gray-300 ${rowBg} group-hover:!bg-surface-700`}
-                  >
-                    {formatMcap(token.mcap)}
-                  </td>
-                  <td
-                    className={`sticky left-[450px] z-10 w-[60px] min-w-[60px] px-3 py-3 text-center font-mono text-sm text-gray-300 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}
+                    className="min-w-[60px] px-3 py-3 text-center font-mono text-sm text-gray-300 cursor-pointer hover:text-emerald-400 transition-colors"
+                    onClick={() => setFeedsModalOpen(true)}
                   >
                     {tokenFeedCounts.get(token.id) ?? 0}
                   </td>
 
                   {visibleTokenProviders.flatMap((provider) =>
                     provider.metrics.map((metric, i) => {
+                      const value =
+                        tokenEvaluations[provider.id]?.[token.id]?.[
+                          metric.id
+                        ] ?? null;
+
+                      if (metric.ratingType === "live-mcap") {
+                        return (
+                          <td
+                            key={`${provider.id}-${metric.id}`}
+                            className={`min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 ${
+                              i === 0 ? "border-l border-surface-700" : ""
+                            }`}
+                          >
+                            {formatMcap(token.mcap)}
+                          </td>
+                        );
+                      }
+
                       const isTierable =
                         metric.ratingType === "stage" ||
                         metric.ratingType === "grade";
@@ -304,11 +316,7 @@ export default function Home() {
                           }
                         >
                           <RatingCell
-                            value={
-                              tokenEvaluations[provider.id]?.[token.id]?.[
-                                metric.id
-                              ] ?? null
-                            }
+                            value={value}
                             ratingType={metric.ratingType}
                           />
                         </td>
@@ -349,7 +357,7 @@ export default function Home() {
               {/* Provider group row */}
               <tr className="border-b border-surface-600 bg-surface-800">
                 <th
-                  colSpan={4}
+                  colSpan={3}
                   className="sticky left-0 z-20 bg-surface-800"
                 />
                 {visibleProviders.map((provider) => (
@@ -371,17 +379,11 @@ export default function Home() {
                 >
                   Protocol{sortIndicator("name")}
                 </th>
-                <th className="sticky left-[180px] z-20 w-[120px] min-w-[120px] bg-surface-800 px-3 py-2 text-left text-xs font-medium text-gray-400">
+                <th className="sticky left-[180px] z-20 w-[120px] min-w-[120px] bg-surface-800 px-3 py-2 text-left text-xs font-medium text-gray-400 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)]">
                   Type
                 </th>
                 <th
-                  className="sticky left-[300px] z-20 w-[100px] min-w-[100px] bg-surface-800 px-3 py-2 text-right text-xs font-medium text-gray-400 cursor-pointer select-none"
-                  onClick={() => handleSort("tvl")}
-                >
-                  TVL{sortIndicator("tvl")}
-                </th>
-                <th
-                  className="sticky left-[400px] z-20 w-[60px] min-w-[60px] bg-surface-800 px-3 py-2 text-center text-xs font-medium text-gray-400 cursor-pointer select-none shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)]"
+                  className="min-w-[60px] px-3 py-2 text-center text-xs font-medium text-gray-400 cursor-pointer select-none"
                   onClick={() => handleSort("feeds")}
                 >
                   Feeds{sortIndicator("feeds")}
@@ -390,7 +392,7 @@ export default function Home() {
                   provider.metrics.map((metric, i) => (
                     <th
                       key={`${provider.id}-${metric.id}`}
-                      className={`min-w-[80px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
+                      className={`min-w-[100px] px-3 py-2 text-center text-xs font-medium text-gray-400 ${
                         i === 0 ? "border-l border-surface-600" : ""
                       }`}
                     >
@@ -417,18 +419,12 @@ export default function Home() {
                     {protocol.name}
                   </td>
                   <td
-                    className={`sticky left-[180px] z-10 w-[120px] min-w-[120px] px-3 py-3 text-xs text-gray-400 ${rowBg} group-hover:!bg-surface-700`}
+                    className={`sticky left-[180px] z-10 w-[120px] min-w-[120px] px-3 py-3 text-xs text-gray-400 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}
                   >
                     {formatProtocolType(protocol.type)}
                   </td>
                   <td
-                    className={`sticky left-[300px] z-10 w-[100px] min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 cursor-pointer hover:text-blue-400 transition-colors ${rowBg} group-hover:!bg-surface-700`}
-                    onClick={() => setTvlModalOpen(true)}
-                  >
-                    {formatTvl(protocol.tvl)}
-                  </td>
-                  <td
-                    className={`sticky left-[400px] z-10 w-[60px] min-w-[60px] px-3 py-3 text-center font-mono text-sm text-gray-300 cursor-pointer hover:text-emerald-400 transition-colors shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)] ${rowBg} group-hover:!bg-surface-700`}
+                    className="min-w-[60px] px-3 py-3 text-center font-mono text-sm text-gray-300 cursor-pointer hover:text-emerald-400 transition-colors"
                     onClick={() => setFeedsModalOpen(true)}
                   >
                     {feedCounts.get(protocol.id) ?? 0}
@@ -436,6 +432,24 @@ export default function Home() {
 
                   {visibleProviders.flatMap((provider) =>
                     provider.metrics.map((metric, i) => {
+                      const value =
+                        evaluations[provider.id]?.[protocol.id]?.[metric.id] ??
+                        null;
+
+                      if (metric.ratingType === "live-tvl") {
+                        return (
+                          <td
+                            key={`${provider.id}-${metric.id}`}
+                            className={`min-w-[100px] px-3 py-3 text-right font-mono text-sm text-gray-300 cursor-pointer hover:text-blue-400 transition-colors ${
+                              i === 0 ? "border-l border-surface-700" : ""
+                            }`}
+                            onClick={() => setTvlModalOpen(true)}
+                          >
+                            {formatTvl(protocol.tvl)}
+                          </td>
+                        );
+                      }
+
                       const isTierable =
                         metric.ratingType === "stage" ||
                         metric.ratingType === "grade";
@@ -470,11 +484,7 @@ export default function Home() {
                           }
                         >
                           <RatingCell
-                            value={
-                              evaluations[provider.id]?.[protocol.id]?.[
-                                metric.id
-                              ] ?? null
-                            }
+                            value={value}
                             ratingType={metric.ratingType}
                           />
                         </td>
@@ -524,6 +534,33 @@ export default function Home() {
       </>
       )}
     </main>
+
+    {/* Sticky data transparency banner */}
+    {!bannerDismissed && (
+      <div className="fixed bottom-0 inset-x-0 z-50 border-t border-amber-500/30 bg-surface-900/95 backdrop-blur-sm px-6 py-3">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4">
+          <p className="text-sm text-amber-300/90">
+            <span className="font-semibold">Note:</span> Some data displayed in
+            the matrix is manually collected and may not be up to date.{" "}
+            <Link
+              href="/about#data-sources"
+              className="font-medium text-amber-200 underline underline-offset-2 hover:text-amber-100"
+            >
+              See which data is live vs. manually collected
+            </Link>
+          </p>
+          <button
+            onClick={() => setBannerDismissed(true)}
+            className="shrink-0 rounded-md px-2 py-1 text-gray-500 transition-colors hover:bg-surface-700 hover:text-gray-300"
+            aria-label="Dismiss banner"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+              <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    )}
     </>
   );
 }

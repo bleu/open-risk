@@ -13,7 +13,7 @@ source_repo: n/a
 access: free
 metric_orientation: ethereum-principles
 is_rfp_suggestion: false
-recommendation: include
+recommendation: exclude
 last_researched: 2026-06-12
 confidence: high
 ---
@@ -32,7 +32,7 @@ Yes. Free API, no auth required.
 
 ## Coverage of top 20
 
-Covers any ERC-20 token on Ethereum. In the token matrix: 30+ tokens assessed. All major tokens show safe=1 with 0% buy/sell taxes.
+Covers any ERC-20 token on Ethereum. In the token matrix: 30+ tokens assessed. However, all major tokens returned identical results (safe=1, 0% buy tax, 0% sell tax), providing no differentiating signal.
 
 ## How to fetch
 
@@ -55,4 +55,4 @@ Supports optional `X-API-KEY` header but not strictly required for basic use. No
 
 ## Inclusion
 
-Yes. Provides a practical honeypot detection signal via transaction simulation — complements GoPlus and De.Fi Scanner static analysis with dynamic behavior testing.
+No. Removed from the PoC. For the top tokens tracked in this project, Honeypot.is returned identical data across every token (safe=1, 0% buy/sell tax), adding no useful differentiation. The tool is designed to catch scam/rug tokens, which are not in scope for a top-20-by-mcap matrix. May be worth revisiting if coverage expands to long-tail tokens.
