@@ -61,6 +61,10 @@ Metrics extracted per protocol:
 - https://defillama.com/docs/api — API docs
 - https://github.com/DefiLlama — open-source repos
 
+## Multi-entity usage
+
+Also used as an **oracle-level provider** in the oracle matrix. Provides TVS (Total Value Secured) weekly delta per oracle network. Data from the same `/protocols` endpoint filtered for oracle-type entries. Covers: Chainlink, Chronicle, WINkLink, RedStone, Pyth.
+
 ## Inclusion
 
-Yes (already integrated). Not an RFP-suggested risk provider — serves as the baseline metadata layer for protocol fundamentals (TVL, audits, hacks).
+Yes (already integrated). Not an RFP-suggested risk provider — serves as the baseline metadata layer for protocol fundamentals (TVL, audits, hacks) and oracle TVS tracking.

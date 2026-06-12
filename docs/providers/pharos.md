@@ -60,6 +60,10 @@ Rate limits: 30 req/min. Keys expire after 60 days.
 - https://pharos.watch/methodology/ — metric definitions
 - https://github.com/TokenBrice/stablecoin-dashboard — source (MIT)
 
+## Multi-entity usage
+
+Also used as a **token-level provider** in the token matrix. Provides per-stablecoin metrics: Safety Grade (A+ to F), Safety Score (0-100), DEWS score (Dependency Early Warning), and Liquidity score (0-100). Data from `https://pharos.watch/datasets/scores-latest/latest.json`. Covers 20 stablecoins including USDT, USDC, USDS, DAI, GHO, USDE.
+
 ## Inclusion
 
 Yes. Provides real-time stablecoin risk monitoring via free, open-source public API. Unique niche: peg-stability, depeg alerts, and freeze/blacklist tracking not covered by any other provider. Coverage is narrow (stablecoin-issuing protocols only) but the signal is differentiated.

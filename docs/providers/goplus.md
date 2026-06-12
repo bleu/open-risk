@@ -60,6 +60,10 @@ The fetcher (`src/providers/goplus.ts`) maps each protocol to its governance tok
 - https://gopluslabs.io — site
 - https://docs.gopluslabs.io — API docs
 
+## Multi-entity usage
+
+Also used as a **token-level provider** in the token matrix (slug: `goplus-token`) with expanded metrics: verified (source code open), safe (not honeypot), fixed-supply (cannot mint), immutable (no proxy). Covers 30+ tokens across DeFi, stablecoins, infrastructure, and exchange categories.
+
 ## Inclusion
 
 Yes (already integrated). Not an RFP-suggested risk provider — adds basic token contract safety checks (source verification, honeypot detection) as a supplementary data layer.
