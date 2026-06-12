@@ -12,6 +12,7 @@ data_format: json
 source_repo: n/a
 access: gated
 metric_orientation: financial-market
+is_rfp_suggestion: true
 recommendation: conditional
 last_researched: 2026-06-08
 confidence: medium

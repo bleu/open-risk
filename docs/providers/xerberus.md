@@ -12,6 +12,7 @@ data_format: json
 source_repo: https://github.com/XerberusTeam
 access: freemium
 metric_orientation: mixed
+is_rfp_suggestion: true
 recommendation: conditional
 last_researched: 2026-06-08
 confidence: high

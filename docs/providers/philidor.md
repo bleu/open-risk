@@ -12,6 +12,7 @@ data_format: json
 source_repo: https://github.com/Philidor-Labs
 access: free
 metric_orientation: mixed
+is_rfp_suggestion: true
 recommendation: include
 last_researched: 2026-06-12
 confidence: high

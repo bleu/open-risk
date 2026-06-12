@@ -12,6 +12,7 @@ data_format: json
 source_repo: https://github.com/ondefy/zyfai-sdk
 access: free
 metric_orientation: financial-market
+is_rfp_suggestion: true
 recommendation: exclude
 last_researched: 2026-06-08
 confidence: high

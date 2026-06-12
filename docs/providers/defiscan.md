@@ -12,6 +12,7 @@ data_format: yaml-frontmatter + markdown
 source_repo: https://github.com/deficollective/defiscan
 access: free
 metric_orientation: ethereum-principles
+is_rfp_suggestion: true
 recommendation: include
 last_researched: 2026-06-08
 confidence: high

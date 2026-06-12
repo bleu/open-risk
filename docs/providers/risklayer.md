@@ -12,6 +12,7 @@ data_format: html
 source_repo: n/a
 access: free
 metric_orientation: mixed
+is_rfp_suggestion: true
 recommendation: include
 last_researched: 2026-06-12
 confidence: medium

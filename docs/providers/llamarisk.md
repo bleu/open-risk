@@ -12,6 +12,7 @@ data_format: html
 source_repo: https://github.com/llama-risk
 access: free
 metric_orientation: mixed
+is_rfp_suggestion: true
 recommendation: exclude
 last_researched: 2026-06-08
 confidence: medium
